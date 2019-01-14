@@ -3,7 +3,7 @@ version: '3.5'
 services:
   nifi:
     image: apache/nifi:${IMAGE_TAG:-latest}
-    hostname: nifi
+    hostname: apache-nifi
     environment:
       - NIFI_LOG_DIR
       - NIFI_HOME
@@ -19,7 +19,7 @@ services:
       - nifi-provenance-vol:${NIFI_HOME}/provenance_repository
       - nifi-state-vol:${NIFI_HOME}/state
     healthcheck:
-      test: curl --silent http://nifi:${PORT}
+      test: curl --silent http://apache-nifi:${PORT}
       interval: 30s
       timeout: 30s
       retries: 3
