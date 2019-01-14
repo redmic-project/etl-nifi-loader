@@ -3,14 +3,13 @@ version: '3.5'
 services:
   nifi:
     image: apache/nifi:${IMAGE_TAG:-latest}
+    hostname: apache-nifi
     environment:
       - NIFI_LOG_DIR
       - NIFI_HOME
     networks:
       kafka-net:
       traefik-net:
-        aliases:
-          - apache-nifi
     volumes:
       - nifi-log-vol:${NIFI_LOG_DIR}
       - nifi-conf-vol:${NIFI_HOME}/conf
@@ -31,6 +30,8 @@ services:
       labels:
         traefik.frontend.auth.basic.users: ${UI_AUTH}
         traefik.frontend.rule: Host:nifi.${PUBLIC_HOSTNAME}
+        traefik.frontend.headers.customRequestHeaders: "X-ProxyScheme:http||X-ProxyHost:nifi.${PUBLIC_HOSTNAME}"
+        traefik.frontend.headers.customResponseHeaders: "Access-Control-Allow-Origin: nifi.${PUBLIC_HOSTNAME}"
         traefik.backend: nifi
         traefik.port: "${PORT}"
       restart_policy:
