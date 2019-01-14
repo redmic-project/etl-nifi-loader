@@ -30,8 +30,6 @@ services:
       labels:
         traefik.frontend.auth.basic.users: ${UI_AUTH}
         traefik.frontend.rule: Host:nifi.${PUBLIC_HOSTNAME}
-        traefik.frontend.headers.customRequestHeaders: "X-ProxyScheme:http||X-ProxyHost:nifi.${PUBLIC_HOSTNAME}"
-        traefik.frontend.headers.customResponseHeaders: "Access-Control-Allow-Origin: nifi.${PUBLIC_HOSTNAME}"
         traefik.backend: nifi
         traefik.port: "${PORT}"
       restart_policy:
