@@ -3,9 +3,20 @@ version: '3.5'
 services:
   nifi:
     image: apache/nifi:${IMAGE_TAG:-latest}
+    environment:
+      - NIFI_LOG_DIR
+      - NIFI_HOME
     networks:
       kafka-net:
       traefik-net:
+    volumes:
+      - nifi-log-vol:${NIFI_LOG_DIR}
+      - nifi-conf-vol:${NIFI_HOME}/conf
+      - nifi-database-vol:${NIFI_HOME}/database_repository
+      - nifi-flowfile-vol:${NIFI_HOME}/flowfile_repository
+      - nifi-content-vol:${NIFI_HOME}/content_repository
+      - nifi-provenance-vol:${NIFI_HOME}/provenance_repository
+      - nifi-state-vol:${NIFI_HOME}/state
     healthcheck:
       test: curl --silent http://localhost:${PORT}
       interval: 30s
@@ -38,3 +49,19 @@ networks:
   traefik-net:
     name: ${TRAEFIK_NET_NAME:-traefik-net}
     external: true
+
+volumes:
+  nifi-log-vol:
+    name: ${NIFI_LOG_VOL_NAME:-nifi-log-vol}
+  nifi-conf-vol:
+    name: ${NIFI_CONF_VOL_NAME:-nifi-conf-vol}
+  nifi-database-vol:
+    name: ${NIFI_DATABASE_VOL_NAME:-nifi-database-vol}
+  nifi-flowfile-vol:
+    name: ${NIFI_FLOWFILE_VOL_NAME:-nifi-flowfile-vol}
+  nifi-content-vol:
+    name: ${NIFI_CONTENT_VOL_NAME:-nifi-content-vol}
+  nifi-provenance-vol:
+    name: ${NIFI_PROVENANCE_VOL_NAME:-nifi-provenance-vol}
+  nifi-state-vol:
+    name: ${NIFI_STATE_VOL_NAME:-nifi-state-vol}
