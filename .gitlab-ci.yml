@@ -10,6 +10,7 @@ variables:
   DOCKER_DRIVER: overlay2
   STACK: nifi
   SERVICES_TO_CHECK: nifi_${CI_PROJECT_NAME}
+  STATUS_CHECK_DELAY: 300
 
 deploy-nifi-supporting-branch-develop:
   stage: deploy

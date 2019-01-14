@@ -3,13 +3,14 @@ version: '3.5'
 services:
   nifi:
     image: apache/nifi:${IMAGE_TAG:-latest}
-    hostname: apache-nifi
     environment:
       - NIFI_LOG_DIR
       - NIFI_HOME
     networks:
       kafka-net:
       traefik-net:
+        aliases:
+          - apache-nifi
     volumes:
       - nifi-log-vol:${NIFI_LOG_DIR}
       - nifi-conf-vol:${NIFI_HOME}/conf
