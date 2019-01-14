@@ -9,6 +9,8 @@ services:
     networks:
       kafka-net:
       traefik-net:
+        aliases:
+          - nifi
     volumes:
       - nifi-log-vol:${NIFI_LOG_DIR}
       - nifi-conf-vol:${NIFI_HOME}/conf
@@ -18,7 +20,7 @@ services:
       - nifi-provenance-vol:${NIFI_HOME}/provenance_repository
       - nifi-state-vol:${NIFI_HOME}/state
     healthcheck:
-      test: curl --silent http://localhost:${PORT}
+      test: curl --silent http://nifi:${PORT}
       interval: 30s
       timeout: 30s
       retries: 3
