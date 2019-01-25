@@ -1,0 +1,41 @@
+{
+	"activityId": "1286",
+	"vx": {
+		"dataDefinition": "21",
+		"upperLimit": 150.0,
+		"lowerLimit": -150.0,
+		"upperTolerance": 20.0,
+		"lowerTolerance": 20.0
+	},
+	"vy": {
+		"dataDefinition": "22",
+		"upperLimit": 150.0,
+		"lowerLimit": -150.0,
+		"upperTolerance": 20.0,
+		"lowerTolerance": 20.0
+	},
+	"water_temp": {
+		"dataDefinition": "23",
+		"upperLimit": 27.0,
+		"lowerLimit": 16.0,
+		"upperTolerance": 2.0,
+		"lowerTolerance": 2.0
+	},
+	"speed": {
+		"dataDefinition": "20",
+		"upperLimit": 1050.0,
+		"lowerLimit": 950.0,
+		"upperTolerance": 50.0,
+		"lowerTolerance": 50.0,
+		"transform": 3.6,
+		"decimalPlaces": 3
+	},
+	"direction": {
+		"dataDefinition": "19",
+		"upperLimit": 120.0,
+		"lowerLimit": 0.0,
+		"upperTolerance": 30.0,
+		"lowerTolerance": 0.0
+	}
+}
+
