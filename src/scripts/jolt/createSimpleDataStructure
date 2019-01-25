@@ -1,0 +1,40 @@
+[{
+    "operation": "shift",
+    "spec": {
+      "id": "&",
+      "date": "&",
+      "*": "temp.&"
+    }
+  },
+  {
+    "operation": "shift",
+    "spec": {
+      "*": "&",
+      "temp": {
+        "*": {
+          "$": "sensors.[#2].dataDefinition",
+          "@": "sensors.[#2].value"
+        }
+      }
+    }
+  },
+  {
+    "operation": "default",
+    "spec": {
+      "activityId": null,
+      "featuresRelations": null,
+      "sampleId": null,
+      "inserted": null,
+      "updated": null,
+      "sensors[]": {
+        "*": {
+          "z": null,
+          "deviation": null,
+          "remark": null,
+          "qFlag": null,
+          "vFlag": null
+        }
+      }
+    }
+  }
+]
