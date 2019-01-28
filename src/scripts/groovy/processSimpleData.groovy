@@ -29,12 +29,6 @@ flowFile = session.write(flowFile, { inputStream, outputStream ->
 	// Read config from file
 	def config = getConfigFile()
 
-	// Set activity id from config
-	inJson["activityId"] = config["activityId"]
-
-	// Generate identifier
-	inJson["id"] = generateIdentifier(config["activityId"], inJson["date"])
-
 	def sensors = inJson["sensors"]
 	def toRemove = []
 
@@ -59,6 +53,9 @@ flowFile = session.write(flowFile, { inputStream, outputStream ->
 				value = truncValue(value, decimalPlaces)
 			}
 
+			// Set activity id from config
+			sensor["activityId"] = config["activityId"]
+
 			sensor["value"] = value
 
 			// qualityControl
@@ -66,6 +63,9 @@ flowFile = session.write(flowFile, { inputStream, outputStream ->
 			sensor["vFlag"] = realTimeVFlag
 
 			sensor["dataDefinition"] = config[dataDefinition].dataDefinition
+
+			// Generate identifier
+			sensor["id"] = generateIdentifier(config["activityId"], sensor["dataDefinition"], sensor["date"])
 		}
 		else {
 			toRemove.add(sensor)
@@ -85,9 +85,9 @@ def getConfigFile() {
 	return new JsonSlurper().parseText(configFile)
 }
 
-def generateIdentifier(activityId, dateTime) {
+def generateIdentifier(activityId, dataDefinition, dateTime) {
 	def time = Date.parse(dateFormat, dateTime)
-	return activityId + "-" + time.getTime();
+	return activityId + "-" + dataDefinition + "-" + time.getTime();
 }
 
 def transformValue(sensorValue, transform) {

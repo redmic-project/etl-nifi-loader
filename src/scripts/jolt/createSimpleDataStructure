@@ -1,17 +1,18 @@
 [{
     "operation": "shift",
     "spec": {
-      "id": "&",
-      "date": "&",
+      "id": "id",
+      "date": "date",
       "*": "temp.&"
     }
   },
   {
     "operation": "shift",
     "spec": {
-      "*": "&",
       "temp": {
         "*": {
+          "@(2,id)": "sensors.[#2].id",
+          "@(2,date)": "sensors.[#2].date",
           "$": "sensors.[#2].dataDefinition",
           "@": "sensors.[#2].value"
         }
@@ -21,18 +22,18 @@
   {
     "operation": "default",
     "spec": {
-      "activityId": null,
-      "featuresRelations": null,
-      "sampleId": null,
-      "inserted": null,
-      "updated": null,
       "sensors[]": {
         "*": {
           "z": null,
           "deviation": null,
           "remark": null,
           "qFlag": null,
-          "vFlag": null
+          "vFlag": null,
+          "activityId": null,
+          "featuresRelations": null,
+          "sampleId": null,
+          "inserted": null,
+          "updated": null
         }
       }
     }
