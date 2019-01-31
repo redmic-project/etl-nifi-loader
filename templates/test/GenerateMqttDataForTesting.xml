@@ -384,15 +384,15 @@
                         <properties>
                             <entry>
 <key>Broker URI</key>
-<value>tcp://iot.eclipse.org:1883</value>
+<value>tcp://mqtt_vernemq:1883</value>
                             </entry>
                             <entry>
 <key>Client ID</key>
-<value>nifimqttclient-redmic-granadillaweatherstation-test
-</value>
+<value>nifi-granadilla-buoy-weather-station-test</value>
                             </entry>
                             <entry>
 <key>Username</key>
+<value>oag</value>
                             </entry>
                             <entry>
 <key>Password</key>
@@ -465,5 +465,5 @@
             <variables/>
         </processGroups>
     </snippet>
-    <timestamp>01/29/2019 12:12:03 UTC</timestamp>
+    <timestamp>01/31/2019 12:22:58 UTC</timestamp>
 </template>
