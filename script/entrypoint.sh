@@ -2,15 +2,18 @@
 
 echo "Will copy following resources:"
 
-ls -R /redmic-nifi-conf
+find /redmic-nifi-conf
 
-echo "Copying resources .."
+echo "\\nRemoving old resources .."
 
-mkdir -p /nifi-conf/redmic
+rm -rf /nifi-conf/redmic
+mkdir /nifi-conf/redmic
+
+echo "\\nCopying resources .."
 
 if cp -a /redmic-nifi-conf/. /nifi-conf/redmic
 then
-	echo "Resources copied to Nifi config volume successfully"
+	echo "\\nResources copied to Nifi config volume successfully!"
 else
-	echo "Error while copying resources!"
+	echo "\\nError while copying resources!"
 fi
