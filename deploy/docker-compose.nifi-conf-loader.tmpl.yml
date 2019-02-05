@@ -1,0 +1,29 @@
+version: '3.5'
+
+services:
+  nifi-conf-loader:
+    image: ${IMAGE_NAME}:${IMAGE_TAG:-latest}
+    networks:
+      - kafka-net
+    volumes:
+      - nifi-conf-vol:/nifi-conf
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: none
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 32M
+        reservations:
+          memory: 16M
+
+networks:
+  kafka-net:
+    name: ${KAFKA_NET_NAME:-kafka-net}
+    external: true
+
+volumes:
+  nifi-conf-vol:
+    name: ${NIFI_CONF_VOL_NAME:-nifi-conf-vol}
