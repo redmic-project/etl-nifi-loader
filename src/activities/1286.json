@@ -23,12 +23,10 @@
 	},
 	"speed": {
 		"dataDefinition": "20",
-		"upperLimit": 1050.0,
-		"lowerLimit": 950.0,
-		"upperTolerance": 50.0,
-		"lowerTolerance": 50.0,
-		"transform": 3.6,
-		"decimalPlaces": 3
+		"upperLimit": 120.0,
+		"lowerLimit": 0.0,
+		"upperTolerance": 30.0,
+		"lowerTolerance": 0.0
 	},
 	"direction": {
 		"dataDefinition": "19",
