@@ -7,7 +7,7 @@
 		"upperTolerance": 1.0,
 		"lowerTolerance": 1.0
 	},
-	"press_bar": {
+	"press_mbar": {
 		"dataDefinition": "16",
 		"upperLimit": 1050.0,
 		"lowerLimit": 950.0,
