@@ -18,6 +18,9 @@ services:
       - nifi-content-vol:${NIFI_HOME}/content_repository
       - nifi-provenance-vol:${NIFI_HOME}/provenance_repository
       - nifi-state-vol:${NIFI_HOME}/state
+    configs:
+      - source: logback-xml
+        target: ${NIFI_HOME}/conf/logback.xml
     healthcheck:
       test: curl --silent http://apache-nifi:${PORT}
       interval: 30s
@@ -56,20 +59,10 @@ volumes:
   nifi-log-vol:
     name: ${NIFI_LOG_VOL_NAME:-nifi-log-vol}
 
-  nifi-conf-vol:
-    name: ${NIFI_CONF_VOL_NAME:-nifi-conf-vol}
-
-  nifi-database-vol:
-    name: ${NIFI_DATABASE_VOL_NAME:-nifi-database-vol}
-
-  nifi-flowfile-vol:
-    name: ${NIFI_FLOWFILE_VOL_NAME:-nifi-flowfile-vol}
-
-  nifi-content-vol:
-    name: ${NIFI_CONTENT_VOL_NAME:-nifi-content-vol}
-
-  nifi-provenance-vol:
-    name: ${NIFI_PROVENANCE_VOL_NAME:-nifi-provenance-vol}
-
   nifi-state-vol:
     name: ${NIFI_STATE_VOL_NAME:-nifi-state-vol}
+
+configs:
+  logback-xml:
+    name: ${LOGBACK_XML_NAME:-nifi-logback-xml}
+    file: ./config/logback.xml

@@ -2,7 +2,7 @@
 <template encoding-version="1.2">
     <description>Todos los procesos ETL implementados</description>
     <groupId>4bc31514-0168-1000-a9a5-905f7192db61</groupId>
-    <name>NiFiFlow_31-01-2019_Final</name>
+    <name>NiFiFlow</name>
     <snippet>
         <connections>
             <id>3a8cc1ea-039a-38bb-0000-000000000000</id>
@@ -30,6 +30,30 @@
             <zIndex>0</zIndex>
         </connections>
         <connections>
+            <id>6a4ba154-e8a0-3784-0000-000000000000</id>
+            <parentGroupId>2e05f8db-0f5f-3036-0000-000000000000</parentGroupId>
+            <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
+            <backPressureObjectThreshold>10000</backPressureObjectThreshold>
+            <destination>
+                <groupId>2e05f8db-0f5f-3036-0000-000000000000</groupId>
+                <id>0de27046-d1c0-3f90-0000-000000000000</id>
+                <type>PROCESSOR</type>
+            </destination>
+            <flowFileExpiration>0 sec</flowFileExpiration>
+            <labelIndex>1</labelIndex>
+            <loadBalanceCompression>DO_NOT_COMPRESS</loadBalanceCompression>
+            <loadBalancePartitionAttribute></loadBalancePartitionAttribute>
+            <loadBalanceStatus>LOAD_BALANCE_NOT_CONFIGURED</loadBalanceStatus>
+            <loadBalanceStrategy>DO_NOT_LOAD_BALANCE</loadBalanceStrategy>
+            <name></name>
+            <source>
+                <groupId>3329a3c1-eed1-3950-0000-000000000000</groupId>
+                <id>5a56d2f1-27bc-3453-0000-000000000000</id>
+                <type>OUTPUT_PORT</type>
+            </source>
+            <zIndex>0</zIndex>
+        </connections>
+        <connections>
             <id>6f0a4a22-39c6-36f3-0000-000000000000</id>
             <parentGroupId>2e05f8db-0f5f-3036-0000-000000000000</parentGroupId>
             <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
@@ -50,30 +74,6 @@
                 <groupId>2e05f8db-0f5f-3036-0000-000000000000</groupId>
                 <id>8339bef3-32c2-3091-0000-000000000000</id>
                 <type>FUNNEL</type>
-            </source>
-            <zIndex>0</zIndex>
-        </connections>
-        <connections>
-            <id>8841fd71-1df9-3bcc-0000-000000000000</id>
-            <parentGroupId>2e05f8db-0f5f-3036-0000-000000000000</parentGroupId>
-            <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
-            <backPressureObjectThreshold>10000</backPressureObjectThreshold>
-            <destination>
-                <groupId>2e05f8db-0f5f-3036-0000-000000000000</groupId>
-                <id>0de27046-d1c0-3f90-0000-000000000000</id>
-                <type>PROCESSOR</type>
-            </destination>
-            <flowFileExpiration>0 sec</flowFileExpiration>
-            <labelIndex>1</labelIndex>
-            <loadBalanceCompression>DO_NOT_COMPRESS</loadBalanceCompression>
-            <loadBalancePartitionAttribute></loadBalancePartitionAttribute>
-            <loadBalanceStatus>LOAD_BALANCE_NOT_CONFIGURED</loadBalanceStatus>
-            <loadBalanceStrategy>DO_NOT_LOAD_BALANCE</loadBalanceStrategy>
-            <name></name>
-            <source>
-                <groupId>3329a3c1-eed1-3950-0000-000000000000</groupId>
-                <id>5a56d2f1-27bc-3453-0000-000000000000</id>
-                <type>OUTPUT_PORT</type>
             </source>
             <zIndex>0</zIndex>
         </connections>
@@ -764,8 +764,8 @@ Actividad 1286</label>
                     <id>9ee51ca8-19e0-3e34-0000-000000000000</id>
                     <parentGroupId>3329a3c1-eed1-3950-0000-000000000000</parentGroupId>
                     <position>
-                        <x>-714.5404663085938</x>
-                        <y>-129.52245201509635</y>
+                        <x>-716.5706787109375</x>
+                        <y>-132.56776298921744</y>
                     </position>
                     <comments></comments>
                     <contents>
@@ -1055,7 +1055,7 @@ Actividad 1286</label>
         <autoTerminate>false</autoTerminate>
         <name>success</name>
     </relationships>
-    <state>RUNNING</state>
+    <state>DISABLED</state>
     <style/>
     <type>org.apache.nifi.processors.standard.ReplaceText</type>
 </processors>
@@ -1153,7 +1153,7 @@ Actividad 1286</label>
         <autoTerminate>false</autoTerminate>
         <name>success</name>
     </relationships>
-    <state>RUNNING</state>
+    <state>DISABLED</state>
     <style/>
     <type>org.apache.nifi.processors.standard.GenerateFlowFile</type>
 </processors>
@@ -1350,7 +1350,7 @@ Actividad 1286</label>
         <autoTerminate>true</autoTerminate>
         <name>success</name>
     </relationships>
-    <state>RUNNING</state>
+    <state>STOPPED</state>
     <style/>
     <type>org.apache.nifi.processors.mqtt.PublishMQTT</type>
 </processors>
@@ -1916,8 +1916,8 @@ Actividad 1286</label>
                             <id>36658acf-aa74-380b-0000-000000000000</id>
                             <parentGroupId>9ee51ca8-19e0-3e34-0000-000000000000</parentGroupId>
                             <position>
-<x>-841.349853515625</x>
-<y>-369.14422702789307</y>
+<x>-684.349853515625</x>
+<y>-396.14422702789307</y>
                             </position>
                             <bundle>
 <artifact>nifi-mqtt-nar</artifact>
@@ -2267,8 +2267,8 @@ Actividad 1286</label>
                             <id>0fa4754e-4e58-3e68-0000-000000000000</id>
                             <parentGroupId>e9fe8c66-fed8-3acd-0000-000000000000</parentGroupId>
                             <position>
-<x>-809.6826593417109</x>
-<y>-596.694959299758</y>
+<x>-814.8370782870234</x>
+<y>-661.949842112258</y>
                             </position>
                             <comments></comments>
                             <contents>
@@ -2613,7 +2613,7 @@ Actividad 1286</label>
         <autoTerminate>false</autoTerminate>
         <name>success</name>
     </relationships>
-    <state>RUNNING</state>
+    <state>DISABLED</state>
     <style/>
     <type>org.apache.nifi.processors.standard.GenerateFlowFile</type>
 </processors>
@@ -2715,7 +2715,7 @@ Actividad 1286</label>
         <autoTerminate>false</autoTerminate>
         <name>success</name>
     </relationships>
-    <state>RUNNING</state>
+    <state>DISABLED</state>
     <style/>
     <type>org.apache.nifi.processors.standard.ReplaceText</type>
 </processors>
@@ -3492,7 +3492,7 @@ Actividad 1286</label>
             <id>a6c5ba60-53ed-34e5-0000-000000000000</id>
             <parentGroupId>2e05f8db-0f5f-3036-0000-000000000000</parentGroupId>
             <position>
-                <x>977.4070892333984</x>
+                <x>980.4070892333984</x>
                 <y>228.07082691390025</y>
             </position>
             <comments></comments>
@@ -3744,6 +3744,7 @@ Actividad 1286</label>
                         </entry>
                         <entry>
                             <key>schema-registry</key>
+                            <value>93b25bc4-c49b-34e4-0000-000000000000</value>
                         </entry>
                         <entry>
                             <key>schema-name</key>
@@ -3852,13 +3853,15 @@ Actividad 1286</label>
                     <properties>
                         <entry>
                             <key>Schema Write Strategy</key>
-                            <value>schema-name</value>
+                            <value>confluent-encoded</value>
                         </entry>
                         <entry>
                             <key>schema-access-strategy</key>
+                            <value>schema-name</value>
                         </entry>
                         <entry>
                             <key>schema-registry</key>
+                            <value>93b25bc4-c49b-34e4-0000-000000000000</value>
                         </entry>
                         <entry>
                             <key>schema-name</key>
@@ -4770,5 +4773,5 @@ Actividad 1286</label>
             <type>org.apache.nifi.processors.kafka.pubsub.PublishKafkaRecord_2_0</type>
         </processors>
     </snippet>
-    <timestamp>01/31/2019 12:21:09 UTC</timestamp>
+    <timestamp>02/11/2019 11:59:13 UTC</timestamp>
 </template>

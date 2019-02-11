@@ -7,7 +7,7 @@
 		"upperTolerance": 1.0,
 		"lowerTolerance": 1.0
 	},
-	"press_bar": {
+	"press_mbar": {
 		"dataDefinition": "16",
 		"upperLimit": 1050.0,
 		"lowerLimit": 950.0,
@@ -22,7 +22,7 @@
 		"lowerTolerance": 0.0
 	},
 	"wind_dir_magnetic": {
-		"dataDefinition": "9",
+		"dataDefinition": "664",
 		"upperLimit": 360.0,
 		"lowerLimit": 0.0,
 		"upperTolerance": 0.0,

@@ -6,3 +6,42 @@ services:
       placement:
         constraints:
           - node.role == worker
+
+volumes:
+  nifi-conf-vol:
+    name: ${NIFI_CONF_VOL_NAME:-nifi-conf-vol}
+    driver: "cloudstor:aws"
+    driver_opts:
+      backing: shared
+
+  nifi-database-vol:
+    name: ${NIFI_DATABASE_VOL_NAME:-nifi-database-vol}
+    driver: "cloudstor:aws"
+    driver_opts:
+      backing: relocatable
+      size: 1
+      ebstype: gp2
+
+  nifi-flowfile-vol:
+    name: ${NIFI_FLOWFILE_VOL_NAME:-nifi-flowfile-vol}
+    driver: "cloudstor:aws"
+    driver_opts:
+      backing: relocatable
+      size: 1
+      ebstype: gp2
+
+  nifi-content-vol:
+    name: ${NIFI_CONTENT_VOL_NAME:-nifi-content-vol}
+    driver: "cloudstor:aws"
+    driver_opts:
+      backing: relocatable
+      size: 1
+      ebstype: gp2
+
+  nifi-provenance-vol:
+    name: ${NIFI_PROVENANCE_VOL_NAME:-nifi-provenance-vol}
+    driver: "cloudstor:aws"
+    driver_opts:
+      backing: relocatable
+      size: 1
+      ebstype: gp2
