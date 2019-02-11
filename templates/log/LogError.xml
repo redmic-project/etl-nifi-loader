@@ -2,8 +2,73 @@
 <template encoding-version="1.2">
     <description>Genera un mensaje de error cuando recibe algún problema de cualquiera de los subprocesos que se conectan a él. Este mensaje se envía al log de NiFi. También crea un mensaje de alerta y lo envía a kafka para que lo gestione NotificationManager</description>
     <groupId>4bc31514-0168-1000-a9a5-905f7192db61</groupId>
-    <name>Log</name>
+    <name>LogError</name>
     <snippet>
+        <controllerServices>
+            <id>93b25bc4-c49b-34e4-0000-000000000000</id>
+            <parentGroupId>2e05f8db-0f5f-3036-0000-000000000000</parentGroupId>
+            <bundle>
+                <artifact>nifi-confluent-platform-nar</artifact>
+                <group>org.apache.nifi</group>
+                <version>1.8.0</version>
+            </bundle>
+            <comments></comments>
+            <descriptors>
+                <entry>
+                    <key>url</key>
+                    <value>
+                        <name>url</name>
+                    </value>
+                </entry>
+                <entry>
+                    <key>ssl-context</key>
+                    <value>
+                        <identifiesControllerService>org.apache.nifi.ssl.SSLContextService</identifiesControllerService>
+                        <name>ssl-context</name>
+                    </value>
+                </entry>
+                <entry>
+                    <key>timeout</key>
+                    <value>
+                        <name>timeout</name>
+                    </value>
+                </entry>
+                <entry>
+                    <key>cache-size</key>
+                    <value>
+                        <name>cache-size</name>
+                    </value>
+                </entry>
+                <entry>
+                    <key>cache-expiration</key>
+                    <value>
+                        <name>cache-expiration</name>
+                    </value>
+                </entry>
+            </descriptors>
+            <name>ConfluentSchemaRegistry</name>
+            <persistsState>false</persistsState>
+            <properties>
+                <entry>
+                    <key>url</key>
+                    <value>http://schema-registry:8081</value>
+                </entry>
+                <entry>
+                    <key>ssl-context</key>
+                </entry>
+                <entry>
+                    <key>timeout</key>
+                </entry>
+                <entry>
+                    <key>cache-size</key>
+                </entry>
+                <entry>
+                    <key>cache-expiration</key>
+                </entry>
+            </properties>
+            <state>ENABLED</state>
+            <type>org.apache.nifi.confluent.schemaregistry.ConfluentSchemaRegistry</type>
+        </controllerServices>
         <processGroups>
             <id>a6c5ba60-53ed-34e5-0000-000000000000</id>
             <parentGroupId>2e05f8db-0f5f-3036-0000-000000000000</parentGroupId>
@@ -260,6 +325,7 @@
                         </entry>
                         <entry>
                             <key>schema-registry</key>
+                            <value>93b25bc4-c49b-34e4-0000-000000000000</value>
                         </entry>
                         <entry>
                             <key>schema-name</key>
@@ -368,13 +434,15 @@
                     <properties>
                         <entry>
                             <key>Schema Write Strategy</key>
-                            <value>schema-name</value>
+                            <value>confluent-encoded</value>
                         </entry>
                         <entry>
                             <key>schema-access-strategy</key>
+                            <value>schema-name</value>
                         </entry>
                         <entry>
                             <key>schema-registry</key>
+                            <value>93b25bc4-c49b-34e4-0000-000000000000</value>
                         </entry>
                         <entry>
                             <key>schema-name</key>
@@ -1041,5 +1109,5 @@
             <variables/>
         </processGroups>
     </snippet>
-    <timestamp>01/29/2019 12:15:38 UTC</timestamp>
+    <timestamp>02/11/2019 11:56:46 UTC</timestamp>
 </template>
