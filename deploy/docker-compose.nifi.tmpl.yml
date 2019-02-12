@@ -7,6 +7,7 @@ services:
     environment:
       - NIFI_LOG_DIR
       - NIFI_HOME
+      - NIFI_SENSITIVE_PROPS_KEY
     networks:
       - traefik-net
       - kafka-net
