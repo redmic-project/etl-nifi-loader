@@ -1,5 +1,15 @@
 version: '3.5'
 
+services:
+  nifi:
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
+        reservations:
+          memory: 820M
+
 volumes:
   nifi-conf-vol:
     name: ${NIFI_CONF_VOL_NAME:-nifi-conf-vol}
