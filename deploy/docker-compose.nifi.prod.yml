@@ -43,5 +43,5 @@ volumes:
     driver: "cloudstor:aws"
     driver_opts:
       backing: relocatable
-      size: 1
+      size: 2
       ebstype: gp2
