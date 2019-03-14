@@ -30,9 +30,9 @@
 	},
 	"direction": {
 		"dataDefinition": "19",
-		"upperLimit": 120.0,
+		"upperLimit": 360.0,
 		"lowerLimit": 0.0,
-		"upperTolerance": 30.0,
+		"upperTolerance": 0.0,
 		"lowerTolerance": 0.0
 	}
 }
