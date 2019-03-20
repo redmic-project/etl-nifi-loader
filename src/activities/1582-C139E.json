@@ -1,4 +1,5 @@
 {
+    "activityId": "1582",
     "dmax": {
         "dataDefinition": 801,
         "description": "Dirección del viento máximo registrado en los 60 minutos anteriores a la hora indicada por 'fint' (grados)",
