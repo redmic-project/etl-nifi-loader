@@ -1,0 +1,75 @@
+{
+    "activityId": "1582",
+    "dmax": {
+        "dataDefinition": 782,
+        "description": "Dirección del viento máximo registrado en los 60 minutos anteriores a la hora indicada por 'fint' (grados)",
+        "lowerLimit": 0,
+        "lowerTolerance": 0,
+        "upperLimit": 360,
+        "upperTolerance": 0
+    },
+    "dv": {
+        "dataDefinition": 747,
+        "description": "Dirección media del viento, en el período de 10 minutos anteriores a la fecha indicada por 'fint' (grados)",
+        "lowerLimit": 0,
+        "lowerTolerance": 0,
+        "upperLimit": 360,
+        "upperTolerance": 0
+    },
+    "hr": {
+        "dataDefinition": 748,
+        "description": "Humedad relativa instantánea del aire correspondiente a la fecha dada por 'fint' (%)",
+        "lowerLimit": 5,
+        "lowerTolerance": 5,
+        "upperLimit": 95,
+        "upperTolerance": 5
+    },
+    "prec": {
+        "dataDefinition": 745,
+        "description": "Precipitación acumulada, medida por el pluviómetro, durante los 60 minutos anteriores a la hora indicada por el período de observación 'fint' (mm, equivalente a l/m2)",
+        "lowerLimit": 0,
+        "lowerTolerance": 0,
+        "upperLimit": 120,
+        "upperTolerance": 30
+    },
+    "ta": {
+        "dataDefinition": 749,
+        "description": "Temperatura instantánea del aire correspondiente a la fecha dada por 'fint' (grados Celsius)",
+        "lowerLimit": 0,
+        "lowerTolerance": 0,
+        "upperLimit": 40,
+        "upperTolerance": 2
+    },
+    "tamax": {
+        "dataDefinition": 781,
+        "description": "Temperatura máxima del aire, valor máximo de los 60 valores instantáneos de 'ta' medidos en el período de 60 minutos anteriores a la hora indicada por el período de observación 'fint' (grados Celsius)",
+        "lowerLimit": 10,
+        "lowerTolerance": 5,
+        "upperLimit": 40,
+        "upperTolerance": 2
+    },
+    "tamin": {
+        "dataDefinition": 779,
+        "description": "Temperatura mínima del aire, valor mínimo de los 60 valores instantáneos de 'ta' medidos en el período de 60 minutos anteriores a la hora indicada por el período de observación 'fint' (grados Celsius)",
+        "lowerLimit": 0,
+        "lowerTolerance": 0,
+        "upperLimit": 30,
+        "upperTolerance": 5
+    },
+    "vmax": {
+        "dataDefinition": 780,
+        "description": "Velocidad máxima del viento, valor máximo del viento mantenido 3 segundos y registrado en los 60 minutos anteriores a la hora indicada por el período de observación 'fint' (m/s)",
+        "lowerLimit": 0,
+        "lowerTolerance": 0,
+        "upperLimit": 50,
+        "upperTolerance": 10
+    },
+    "vv": {
+        "dataDefinition": 746,
+        "description": "Velocidad media del viento, media escalar de las muestras adquiridas cada 0,25 ó 1 segundo en el período de 10 minutos anterior al indicado por 'fint' (m/s)",
+        "lowerLimit": 0,
+        "lowerTolerance": 0,
+        "upperLimit": 50,
+        "upperTolerance": 6
+    }
+}
