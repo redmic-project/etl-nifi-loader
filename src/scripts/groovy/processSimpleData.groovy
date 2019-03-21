@@ -27,7 +27,7 @@ flowFile = session.write(flowFile, { inputStream, outputStream ->
 	def inJson = new JsonSlurper().parseText(content)
 
 	// Read config from file
-	def config = getConfigFile()
+	def config = getConfigFile(flowFile)
 
 	def sensors = inJson["sensors"]
 	def toRemove = []
@@ -78,9 +78,21 @@ flowFile = session.write(flowFile, { inputStream, outputStream ->
 
 session.transfer(flowFile, REL_SUCCESS)
 
-def getConfigFile() {
-	// Read config from file
-	String configFile = new File(binding.getVariable("configFilePath").value).getText("UTF-8")
+def getConfigFile(flowFile) {
+
+	def attrName = "configFilePath"
+
+	def attr = null
+	// Read config from variables
+	try {
+		attr = binding.getVariable(attrName).evaluateAttributeExpressions(flowFile).value
+	}
+	catch(Exception ex) {}
+
+	if (attr == null) // if is null, read config from attributes
+		attr = flowFile.getAttribute(attrName)
+
+	def configFile = new File(attr).getText("UTF-8")
 
 	return new JsonSlurper().parseText(configFile)
 }
