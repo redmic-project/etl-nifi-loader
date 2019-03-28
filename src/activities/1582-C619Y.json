@@ -133,6 +133,7 @@
         "description": "Velocidad máxima del viento, valor máximo del viento mantenido 3 segundos y registrado en los 60 minutos anteriores a la hora indicada por el período de observación 'fint' (m/s)",
         "lowerLimit": 0,
         "lowerTolerance": 0,
+        "transform": 3.6,
         "upperLimit": 50,
         "upperTolerance": 10
     },
@@ -141,6 +142,7 @@
         "description": "Velocidad media del viento, media escalar de las muestras adquiridas cada 0,25 ó 1 segundo en el período de 10 minutos anterior al indicado por 'fint' (m/s)",
         "lowerLimit": 0,
         "lowerTolerance": 0,
+        "transform": 3.6,
         "upperLimit": 50,
         "upperTolerance": 6
     }
