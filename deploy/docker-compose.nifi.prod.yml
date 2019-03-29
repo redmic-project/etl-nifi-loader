@@ -48,3 +48,9 @@ volumes:
       backing: relocatable
       size: 2
       ebstype: gp2
+
+  ingest-data-vol:
+    name: ${INGEST_DATA_VOL_NAME:-ingest-data-vol}
+    driver: "cloudstor:aws"
+    driver_opts:
+      backing: shared

@@ -25,3 +25,7 @@ volumes:
 
   nifi-provenance-vol:
     name: ${NIFI_PROVENANCE_VOL_NAME:-nifi-provenance-vol}
+
+  ingest-data-vol:
+    name: ${INGEST_DATA_VOL_NAME:-ingest-data-vol}
+
