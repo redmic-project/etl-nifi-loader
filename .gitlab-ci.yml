@@ -73,7 +73,7 @@ deploy-nifi-supporting-branch-develop:
   stage: deploy
   variables:
     SSH_REMOTE: ${DEV_SSH_REMOTE}
-    SERVICES_TO_CHECK: nifi_${CI_PROJECT_NAME}
+    SERVICES_TO_CHECK: etl_${CI_PROJECT_NAME}
     STATUS_CHECK_DELAY: 300
     IMAGE_TAG: ${DEV_NIFI_VERSION}
     COMPOSE_FILE: docker-compose.nifi.tmpl.yml:docker-compose.nifi.dev.yml
@@ -95,7 +95,7 @@ deploy-nifi-stable-branch-develop:
   stage: deploy
   variables:
     SSH_REMOTE: ${DEV_SSH_REMOTE}
-    SERVICES_TO_CHECK: nifi_${CI_PROJECT_NAME}
+    SERVICES_TO_CHECK: etl_${CI_PROJECT_NAME}
     STATUS_CHECK_DELAY: 300
     IMAGE_TAG: ${DEV_NIFI_VERSION}
     COMPOSE_FILE: docker-compose.nifi.tmpl.yml:docker-compose.nifi.dev.yml
@@ -115,7 +115,7 @@ deploy-nifi-supporting-branch-production:
   stage: deploy
   variables:
     SSH_REMOTE: ${PRO_SSH_REMOTE}
-    SERVICES_TO_CHECK: nifi_${CI_PROJECT_NAME}
+    SERVICES_TO_CHECK: etl_${CI_PROJECT_NAME}
     STATUS_CHECK_DELAY: 300
     IMAGE_TAG: ${PRO_NIFI_VERSION}
     COMPOSE_FILE: docker-compose.nifi.tmpl.yml:docker-compose.nifi.prod.yml
@@ -137,7 +137,7 @@ deploy-nifi-stable-branch-production:
   stage: deploy
   variables:
     SSH_REMOTE: ${PRO_SSH_REMOTE}
-    SERVICES_TO_CHECK: nifi_${CI_PROJECT_NAME}
+    SERVICES_TO_CHECK: etl_${CI_PROJECT_NAME}
     STATUS_CHECK_DELAY: 300
     IMAGE_TAG: ${PRO_NIFI_VERSION}
     COMPOSE_FILE: docker-compose.nifi.tmpl.yml:docker-compose.nifi.prod.yml
@@ -157,7 +157,7 @@ deploy-nifi-conf-loader-supporting-branch-develop:
   stage: deploy
   variables:
     SSH_REMOTE: ${DEV_SSH_REMOTE}
-    SERVICES_TO_CHECK: nifi_nifi-conf-loader
+    SERVICES_TO_CHECK: etl_nifi-conf-loader
     STATUS_CHECK_DELAY: 30
     IMAGE_NAME: ${CI_REGISTRY_IMAGE}
     IMAGE_TAG: ${CI_COMMIT_SHA}
@@ -176,7 +176,7 @@ deploy-nifi-conf-loader-stable-branch-develop:
   stage: deploy
   variables:
     SSH_REMOTE: ${DEV_SSH_REMOTE}
-    SERVICES_TO_CHECK: nifi_nifi-conf-loader
+    SERVICES_TO_CHECK: etl_nifi-conf-loader
     STATUS_CHECK_DELAY: 30
     IMAGE_NAME: ${CI_REGISTRY_IMAGE}
     IMAGE_TAG: ${CI_COMMIT_SHA}
@@ -193,7 +193,7 @@ deploy-nifi-conf-loader-supporting-branch-production:
   stage: deploy
   variables:
     SSH_REMOTE: ${PRO_SSH_REMOTE}
-    SERVICES_TO_CHECK: nifi_nifi-conf-loader
+    SERVICES_TO_CHECK: etl_nifi-conf-loader
     STATUS_CHECK_DELAY: 30
     IMAGE_NAME: ${CI_REGISTRY_IMAGE}
     IMAGE_TAG: ${CI_COMMIT_SHA}
@@ -212,7 +212,7 @@ deploy-nifi-conf-loader-stable-branch-production:
   stage: deploy
   variables:
     SSH_REMOTE: ${PRO_SSH_REMOTE}
-    SERVICES_TO_CHECK: nifi_nifi-conf-loader
+    SERVICES_TO_CHECK: etl_nifi-conf-loader
     STATUS_CHECK_DELAY: 30
     IMAGE_NAME: ${CI_REGISTRY_IMAGE}
     IMAGE_TAG: ${CI_COMMIT_SHA}
