@@ -167,7 +167,7 @@ deploy-nifi-conf-loader-supporting-branch-develop:
   script:
     - deploy.sh IMAGE_NAME=${IMAGE_NAME} IMAGE_TAG=${IMAGE_TAG} COMPOSE_FILE=${COMPOSE_FILE}
   environment:
-    name: dev/nifi-conf-loader
+    name: dev/${CI_PROJECT_NAME}-conf-loader
   only:
     - branches
   except:
@@ -187,7 +187,7 @@ deploy-nifi-conf-loader-stable-branch-develop:
   script:
     - deploy.sh IMAGE_NAME=${IMAGE_NAME} IMAGE_TAG=${IMAGE_TAG} COMPOSE_FILE=${COMPOSE_FILE}
   environment:
-    name: dev/nifi-conf-loader
+    name: dev/${CI_PROJECT_NAME}-conf-loader
   only:
     - master
   when: manual
@@ -205,7 +205,7 @@ deploy-nifi-conf-loader-supporting-branch-production:
   script:
     - deploy.sh IMAGE_NAME=${IMAGE_NAME} IMAGE_TAG=${IMAGE_TAG} COMPOSE_FILE=${COMPOSE_FILE}
   environment:
-    name: pro/nifi-conf-loader
+    name: pro/${CI_PROJECT_NAME}-conf-loader
   only:
     - branches
   except:
@@ -225,7 +225,7 @@ deploy-nifi-conf-loader-stable-branch-production:
   script:
     - deploy.sh IMAGE_NAME=${IMAGE_NAME} IMAGE_TAG=${IMAGE_TAG} COMPOSE_FILE=${COMPOSE_FILE}
   environment:
-    name: pro/nifi-conf-loader
+    name: pro/${CI_PROJECT_NAME}-conf-loader
   only:
     - master
   when: manual
