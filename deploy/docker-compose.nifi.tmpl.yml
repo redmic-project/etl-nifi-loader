@@ -2,12 +2,12 @@ version: '3.5'
 
 services:
   nifi:
-    image: apache/nifi:${IMAGE_TAG:-latest}
+    image: ${IMAGE_NAME:-apache/nifi}:${IMAGE_TAG:-latest}
     hostname: apache-nifi
     environment:
-      - NIFI_LOG_DIR
-      - NIFI_HOME
-      - NIFI_WEB_HTTP_HOST
+      NIFI_LOG_DIR:
+      NIFI_HOME:
+      NIFI_WEB_HTTP_HOST:
     networks:
       - traefik-net
       - kafka-net
@@ -32,15 +32,15 @@ services:
     deploy:
       mode: replicated
       replicas: 1
+      restart_policy:
+        delay: 10s
+        window: 2m
       labels:
         traefik.frontend.auth.basic.users: ${UI_AUTH}
         traefik.frontend.rule: Host:nifi.${PUBLIC_HOSTNAME}
         traefik.frontend.headers.customRequestHeaders: X-ProxyScheme:https||X-ProxyHost:nifi.${PUBLIC_HOSTNAME}||X-ProxyPort:443
         traefik.backend: nifi
-        traefik.port: "${PORT}"
-      restart_policy:
-        delay: 30s
-        window: 2m
+        traefik.port: '${PORT}'
 
 networks:
   traefik-net:
