@@ -3,14 +3,15 @@ stages:
   - test-package
   - deploy
 
-image: registry.gitlab.com/redmic-project/docker/docker-deploy:${DOCKER_DEPLOY_IMAGE_TAG}
-
 services:
   - docker:dind
 
 variables:
   DOCKER_DRIVER: overlay2
-  STACK: nifi
+  STACK: etl
+  NIFI_VERSION: latest
+  NIFI_STATUS_CHECK_DELAY: 300
+  NIFI_CONF_LOADER_STATUS_CHECK_DELAY: 30
 
 docker-build-commit-non-master-branches:
   stage: package
@@ -71,14 +72,14 @@ container-scanning:
 
 deploy-nifi-supporting-branch-develop:
   stage: deploy
+  image: ${DOCKER_DEPLOY_IMAGE_NAME}:${DOCKER_DEPLOY_IMAGE_TAG}
   variables:
     SSH_REMOTE: ${DEV_SSH_REMOTE}
-    SERVICES_TO_CHECK: nifi_${CI_PROJECT_NAME}
-    STATUS_CHECK_DELAY: 300
-    IMAGE_TAG: ${DEV_NIFI_VERSION}
-    COMPOSE_FILE: docker-compose.nifi.tmpl.yml:docker-compose.nifi.dev.yml
+    SERVICES_TO_CHECK: ${STACK}_${CI_PROJECT_NAME}
+    STATUS_CHECK_DELAY: ${NIFI_STATUS_CHECK_DELAY}
+    IMAGE_TAG: ${NIFI_VERSION}
+    COMPOSE_FILE: docker-compose.${CI_PROJECT_NAME}.tmpl.yml:docker-compose.${CI_PROJECT_NAME}.dev.yml
     PUBLIC_HOSTNAME: ${DEV_PUBLIC_HOSTNAME}
-    UI_AUTH: ${DEV_UI_AUTH}
   script:
     - >
       deploy.sh IMAGE_TAG=${IMAGE_TAG} COMPOSE_FILE=${COMPOSE_FILE} PUBLIC_HOSTNAME=${PUBLIC_HOSTNAME}
@@ -93,14 +94,14 @@ deploy-nifi-supporting-branch-develop:
 
 deploy-nifi-stable-branch-develop:
   stage: deploy
+  image: ${DOCKER_DEPLOY_IMAGE_NAME}:${DOCKER_DEPLOY_IMAGE_TAG}
   variables:
     SSH_REMOTE: ${DEV_SSH_REMOTE}
-    SERVICES_TO_CHECK: nifi_${CI_PROJECT_NAME}
-    STATUS_CHECK_DELAY: 300
-    IMAGE_TAG: ${DEV_NIFI_VERSION}
-    COMPOSE_FILE: docker-compose.nifi.tmpl.yml:docker-compose.nifi.dev.yml
+    SERVICES_TO_CHECK: ${STACK}_${CI_PROJECT_NAME}
+    STATUS_CHECK_DELAY: ${NIFI_STATUS_CHECK_DELAY}
+    IMAGE_TAG: ${NIFI_VERSION}
+    COMPOSE_FILE: docker-compose.${CI_PROJECT_NAME}.tmpl.yml:docker-compose.${CI_PROJECT_NAME}.dev.yml
     PUBLIC_HOSTNAME: ${DEV_PUBLIC_HOSTNAME}
-    UI_AUTH: ${DEV_UI_AUTH}
   script:
     - >
       deploy.sh IMAGE_TAG=${IMAGE_TAG} COMPOSE_FILE=${COMPOSE_FILE} PUBLIC_HOSTNAME=${PUBLIC_HOSTNAME}
@@ -113,14 +114,14 @@ deploy-nifi-stable-branch-develop:
 
 deploy-nifi-supporting-branch-production:
   stage: deploy
+  image: ${DOCKER_DEPLOY_IMAGE_NAME}:${DOCKER_DEPLOY_IMAGE_TAG}
   variables:
     SSH_REMOTE: ${PRO_SSH_REMOTE}
-    SERVICES_TO_CHECK: nifi_${CI_PROJECT_NAME}
-    STATUS_CHECK_DELAY: 300
-    IMAGE_TAG: ${PRO_NIFI_VERSION}
-    COMPOSE_FILE: docker-compose.nifi.tmpl.yml:docker-compose.nifi.prod.yml
+    SERVICES_TO_CHECK: ${STACK}_${CI_PROJECT_NAME}
+    STATUS_CHECK_DELAY: ${NIFI_STATUS_CHECK_DELAY}
+    IMAGE_TAG: ${NIFI_VERSION}
+    COMPOSE_FILE: docker-compose.${CI_PROJECT_NAME}.tmpl.yml:docker-compose.${CI_PROJECT_NAME}.prod.yml
     PUBLIC_HOSTNAME: ${PRO_PUBLIC_HOSTNAME}
-    UI_AUTH: ${PRO_UI_AUTH}
   script:
     - >
       deploy.sh IMAGE_TAG=${IMAGE_TAG} COMPOSE_FILE=${COMPOSE_FILE} PUBLIC_HOSTNAME=${PUBLIC_HOSTNAME}
@@ -135,14 +136,14 @@ deploy-nifi-supporting-branch-production:
 
 deploy-nifi-stable-branch-production:
   stage: deploy
+  image: ${DOCKER_DEPLOY_IMAGE_NAME}:${DOCKER_DEPLOY_IMAGE_TAG}
   variables:
     SSH_REMOTE: ${PRO_SSH_REMOTE}
-    SERVICES_TO_CHECK: nifi_${CI_PROJECT_NAME}
-    STATUS_CHECK_DELAY: 300
-    IMAGE_TAG: ${PRO_NIFI_VERSION}
-    COMPOSE_FILE: docker-compose.nifi.tmpl.yml:docker-compose.nifi.prod.yml
+    SERVICES_TO_CHECK: ${STACK}_${CI_PROJECT_NAME}
+    STATUS_CHECK_DELAY: ${NIFI_STATUS_CHECK_DELAY}
+    IMAGE_TAG: ${NIFI_VERSION}
+    COMPOSE_FILE: docker-compose.${CI_PROJECT_NAME}.tmpl.yml:docker-compose.${CI_PROJECT_NAME}.prod.yml
     PUBLIC_HOSTNAME: ${PRO_PUBLIC_HOSTNAME}
-    UI_AUTH: ${PRO_UI_AUTH}
   script:
     - >
       deploy.sh IMAGE_TAG=${IMAGE_TAG} COMPOSE_FILE=${COMPOSE_FILE} PUBLIC_HOSTNAME=${PUBLIC_HOSTNAME}
@@ -155,17 +156,18 @@ deploy-nifi-stable-branch-production:
 
 deploy-nifi-conf-loader-supporting-branch-develop:
   stage: deploy
+  image: ${DOCKER_DEPLOY_IMAGE_NAME}:${DOCKER_DEPLOY_IMAGE_TAG}
   variables:
     SSH_REMOTE: ${DEV_SSH_REMOTE}
-    SERVICES_TO_CHECK: nifi_nifi-conf-loader
-    STATUS_CHECK_DELAY: 30
+    SERVICES_TO_CHECK: ${STACK}_${CI_PROJECT_NAME}-conf-loader
+    STATUS_CHECK_DELAY: ${NIFI_CONF_LOADER_STATUS_CHECK_DELAY}
     IMAGE_NAME: ${CI_REGISTRY_IMAGE}
     IMAGE_TAG: ${CI_COMMIT_SHA}
-    COMPOSE_FILE: docker-compose.nifi-conf-loader.tmpl.yml:docker-compose.nifi-conf-loader.dev.yml
+    COMPOSE_FILE: docker-compose.${CI_PROJECT_NAME}-conf-loader.tmpl.yml:docker-compose.${CI_PROJECT_NAME}-conf-loader.dev.yml
   script:
     - deploy.sh IMAGE_NAME=${IMAGE_NAME} IMAGE_TAG=${IMAGE_TAG} COMPOSE_FILE=${COMPOSE_FILE}
   environment:
-    name: dev/nifi-conf-loader
+    name: dev/${CI_PROJECT_NAME}-conf-loader
   only:
     - branches
   except:
@@ -174,34 +176,36 @@ deploy-nifi-conf-loader-supporting-branch-develop:
 
 deploy-nifi-conf-loader-stable-branch-develop:
   stage: deploy
+  image: ${DOCKER_DEPLOY_IMAGE_NAME}:${DOCKER_DEPLOY_IMAGE_TAG}
   variables:
     SSH_REMOTE: ${DEV_SSH_REMOTE}
-    SERVICES_TO_CHECK: nifi_nifi-conf-loader
-    STATUS_CHECK_DELAY: 30
+    SERVICES_TO_CHECK: ${STACK}_${CI_PROJECT_NAME}-conf-loader
+    STATUS_CHECK_DELAY: ${NIFI_CONF_LOADER_STATUS_CHECK_DELAY}
     IMAGE_NAME: ${CI_REGISTRY_IMAGE}
     IMAGE_TAG: ${CI_COMMIT_SHA}
-    COMPOSE_FILE: docker-compose.nifi-conf-loader.tmpl.yml:docker-compose.nifi-conf-loader.dev.yml
+    COMPOSE_FILE: docker-compose.${CI_PROJECT_NAME}-conf-loader.tmpl.yml:docker-compose.${CI_PROJECT_NAME}-conf-loader.dev.yml
   script:
     - deploy.sh IMAGE_NAME=${IMAGE_NAME} IMAGE_TAG=${IMAGE_TAG} COMPOSE_FILE=${COMPOSE_FILE}
   environment:
-    name: dev/nifi-conf-loader
+    name: dev/${CI_PROJECT_NAME}-conf-loader
   only:
     - master
   when: manual
 
 deploy-nifi-conf-loader-supporting-branch-production:
   stage: deploy
+  image: ${DOCKER_DEPLOY_IMAGE_NAME}:${DOCKER_DEPLOY_IMAGE_TAG}
   variables:
     SSH_REMOTE: ${PRO_SSH_REMOTE}
-    SERVICES_TO_CHECK: nifi_nifi-conf-loader
-    STATUS_CHECK_DELAY: 30
+    SERVICES_TO_CHECK: ${STACK}_${CI_PROJECT_NAME}-conf-loader
+    STATUS_CHECK_DELAY: ${NIFI_CONF_LOADER_STATUS_CHECK_DELAY}
     IMAGE_NAME: ${CI_REGISTRY_IMAGE}
     IMAGE_TAG: ${CI_COMMIT_SHA}
-    COMPOSE_FILE: docker-compose.nifi-conf-loader.tmpl.yml:docker-compose.nifi-conf-loader.prod.yml
+    COMPOSE_FILE: docker-compose.${CI_PROJECT_NAME}-conf-loader.tmpl.yml:docker-compose.${CI_PROJECT_NAME}-conf-loader.prod.yml
   script:
     - deploy.sh IMAGE_NAME=${IMAGE_NAME} IMAGE_TAG=${IMAGE_TAG} COMPOSE_FILE=${COMPOSE_FILE}
   environment:
-    name: pro/nifi-conf-loader
+    name: pro/${CI_PROJECT_NAME}-conf-loader
   only:
     - branches
   except:
@@ -210,17 +214,18 @@ deploy-nifi-conf-loader-supporting-branch-production:
 
 deploy-nifi-conf-loader-stable-branch-production:
   stage: deploy
+  image: ${DOCKER_DEPLOY_IMAGE_NAME}:${DOCKER_DEPLOY_IMAGE_TAG}
   variables:
     SSH_REMOTE: ${PRO_SSH_REMOTE}
-    SERVICES_TO_CHECK: nifi_nifi-conf-loader
-    STATUS_CHECK_DELAY: 30
+    SERVICES_TO_CHECK: ${STACK}_${CI_PROJECT_NAME}-conf-loader
+    STATUS_CHECK_DELAY: ${NIFI_CONF_LOADER_STATUS_CHECK_DELAY}
     IMAGE_NAME: ${CI_REGISTRY_IMAGE}
     IMAGE_TAG: ${CI_COMMIT_SHA}
-    COMPOSE_FILE: docker-compose.nifi-conf-loader.tmpl.yml:docker-compose.nifi-conf-loader.prod.yml
+    COMPOSE_FILE: docker-compose.${CI_PROJECT_NAME}-conf-loader.tmpl.yml:docker-compose.${CI_PROJECT_NAME}-conf-loader.prod.yml
   script:
     - deploy.sh IMAGE_NAME=${IMAGE_NAME} IMAGE_TAG=${IMAGE_TAG} COMPOSE_FILE=${COMPOSE_FILE}
   environment:
-    name: pro/nifi-conf-loader
+    name: pro/${CI_PROJECT_NAME}-conf-loader
   only:
     - master
   when: manual
