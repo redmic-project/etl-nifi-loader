@@ -1,0 +1,45 @@
+{
+	"activityId": "1284",
+	"air_temp": {
+		"dataDefinition": "1540",
+		"upperLimit": 40.0,
+		"lowerLimit": 5.0,
+		"upperTolerance": 1.0,
+		"lowerTolerance": 1.0
+	},
+	"press_mbar": {
+		"dataDefinition": "1542",
+		"upperLimit": 1050.0,
+		"lowerLimit": 950.0,
+		"upperTolerance": 50.0,
+		"lowerTolerance": 50.0
+	},
+	"wind_dir_true": {
+		"dataDefinition": "1541",
+		"upperLimit": 360.0,
+		"lowerLimit": 0.0,
+		"upperTolerance": 0.0,
+		"lowerTolerance": 0.0
+	},
+	"wind_dir_magnetic": {
+		"dataDefinition": "1544",
+		"upperLimit": 360.0,
+		"lowerLimit": 0.0,
+		"upperTolerance": 0.0,
+		"lowerTolerance": 0.0
+	},
+	"wind_meters": {
+		"dataDefinition": "1543",
+		"upperLimit": 140.0,
+		"lowerLimit": 0.0,
+		"upperTolerance": 30.0,
+		"lowerTolerance": 0.0,
+		"transform": 3.6,
+		"decimalPlaces": 3
+	},
+	"qCDependencies": {
+		"1541": ["1543"],
+		"1544": ["1541"],
+		"1543": ["1551"]
+	}
+}
