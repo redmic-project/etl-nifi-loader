@@ -34,6 +34,9 @@
 		"lowerLimit": 0.0,
 		"upperTolerance": 0.0,
 		"lowerTolerance": 0.0
+	},
+	"qCDependencies": {
+		"20": ["21", "22"],
+		"19": ["21", "22"]
 	}
 }
-

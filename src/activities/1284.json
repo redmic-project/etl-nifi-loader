@@ -36,5 +36,10 @@
 		"lowerTolerance": 0.0,
 		"transform": 3.6,
 		"decimalPlaces": 3
+	},
+	"qCDependencies": {
+		"15": ["18"],
+		"664": ["15"],
+		"18": ["15"]
 	}
 }
