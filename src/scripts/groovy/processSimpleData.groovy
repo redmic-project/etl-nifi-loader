@@ -56,7 +56,7 @@ flowFile = session.write(flowFile, { inputStream, outputStream ->
 def processSensorData(data, config) {
 
 	def sensors = data["sensors"]
-	def delayedQC = data["qC"]
+	def delayedQC = data["qc"]
 	def toRemove = []
 	def qCFlags = [:]
 
@@ -177,6 +177,9 @@ def getQFlag(value, sensorConfig) {
 
 
 def checkQCDependencies(sensors, qCFlags, qCDependencies) {
+
+	if (qCDependencies == null)
+		return;
 
 	for (sensor in sensors) {
 		def dd = sensor[DATA_DEFINITION_PROPERTY]
