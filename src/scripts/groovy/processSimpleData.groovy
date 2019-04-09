@@ -107,6 +107,25 @@ def processSensorData(data, config) {
 	checkQCDependencies(sensors, qCFlags, config[QC_DEPENDENCIES_CONFIG_PROPERTY])
 }
 
+def getConfigFile(flowFile) {
+
+	def attrName = "configFilePath"
+
+	def attr = null
+	// Read config from variables
+	try {
+		attr = binding.getVariable(attrName).evaluateAttributeExpressions(flowFile).value
+	}
+	catch(Exception ex) {}
+
+	if (attr == null) // if is null, read config from attributes
+		attr = flowFile.getAttribute(attrName)
+
+	def configFile = new File(attr).getText("UTF-8")
+
+	return new JsonSlurper().parseText(configFile)
+}
+
 def generateIdentifier(activityId, dataDefinition, dateTime) {
 	def time = Date.parse(DATE_FORMAT, dateTime)
 	return activityId + "-" + dataDefinition + "-" + time.getTime();
