@@ -53,6 +53,8 @@ flowFile = session.write(flowFile, { inputStream, outputStream ->
 	outputStream.write(JsonOutput.toJson(data).toString().getBytes(StandardCharsets.UTF_8))
 } as StreamCallback)
 
+session.transfer(flowFile, REL_SUCCESS)
+
 def processSensorData(data, config) {
 
 	def sensors = data["sensors"]
