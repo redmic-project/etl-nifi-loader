@@ -29,5 +29,5 @@ volumes:
   nifi-conf-vol:
     name: ${NIFI_CONF_VOL_NAME:-nifi-conf-vol}
 
-  ingest-additional-libs-vol:
-    name: ${INGEST_ADDITIONAL_LIBS_VOL_NAME:-ingest-additional-libs-vol}
+  nifi-additional-libs-vol:
+    name: ${NIFI_ADDITIONAL_LIBS_VOL_NAME:-nifi-additional-libs-vol}

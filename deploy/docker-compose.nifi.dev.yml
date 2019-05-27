@@ -27,8 +27,8 @@ volumes:
   nifi-provenance-vol:
     name: ${NIFI_PROVENANCE_VOL_NAME:-nifi-provenance-vol}
 
+  nifi-additional-libs-vol:
+    name: ${NIFI_ADDITIONAL_LIBS_VOL_NAME:-nifi-additional-libs-vol}
+
   ingest-data-vol:
     name: ${INGEST_DATA_VOL_NAME:-ingest-data-vol}
-
-  ingest-additional-libs-vol:
-    name: ${INGEST_ADDITIONAL_LIBS_VOL_NAME:-ingest-additional-libs-vol}

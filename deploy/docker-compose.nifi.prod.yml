@@ -49,14 +49,15 @@ volumes:
       size: 2
       ebstype: gp2
 
+  nifi-additional-libs-vol:
+    name: ${NIFI_ADDITIONAL_LIBS_VOL_NAME:-nifi-additional-libs-vol}
+    driver: 'cloudstor:aws'
+    driver_opts:
+      backing: shared
+
   ingest-data-vol:
     name: ${INGEST_DATA_VOL_NAME:-ingest-data-vol}
     driver: 'cloudstor:aws'
     driver_opts:
       backing: shared
 
-  ingest-additional-libs-vol:
-    name: ${INGEST_ADDITIONAL_LIBS_VOL_NAME:-ingest-additional-libs-vol}
-    driver: 'cloudstor:aws'
-    driver_opts:
-      backing: shared
