@@ -7,6 +7,7 @@ services:
       - kafka-net
     volumes:
       - nifi-conf-vol:/nifi-conf
+      - ingest-additional-libs-vol:/additional-libs
     deploy:
       mode: replicated
       replicas: 1
@@ -27,3 +28,6 @@ networks:
 volumes:
   nifi-conf-vol:
     name: ${NIFI_CONF_VOL_NAME:-nifi-conf-vol}
+
+  ingest-additional-libs-vol:
+    name: ${INGEST_ADDITIONAL_LIBS_VOL_NAME:-ingest-additional-libs-vol}

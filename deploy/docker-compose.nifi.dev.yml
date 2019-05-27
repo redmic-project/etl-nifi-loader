@@ -30,3 +30,5 @@ volumes:
   ingest-data-vol:
     name: ${INGEST_DATA_VOL_NAME:-ingest-data-vol}
 
+  ingest-additional-libs-vol:
+    name: ${INGEST_ADDITIONAL_LIBS_VOL_NAME:-ingest-additional-libs-vol}

@@ -20,6 +20,7 @@ services:
       - nifi-provenance-vol:${NIFI_HOME}/provenance_repository
       - nifi-state-vol:${NIFI_HOME}/state
       - ingest-data-vol:${NIFI_HOME}/data
+      - ingest-additional-libs-vol:${NIFI_HOME}/additional-libs
     configs:
       - source: logback-xml
         target: ${NIFI_HOME}/conf/logback.xml
