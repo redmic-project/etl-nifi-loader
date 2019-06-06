@@ -17,3 +17,8 @@ then
 else
 	echo -e "\\nError while copying resources!"
 fi
+
+echo -e "\\nInstalling additionals libs .."
+
+curl -LJO https://github.com/geoscript/geoscript-groovy/releases/download/1.13.0/geoscript-groovy-1.13.0-zip.zip
+unzip geoscript-groovy-1.13.0-zip.zip -d /additional-libs/
