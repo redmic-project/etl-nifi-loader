@@ -17,3 +17,31 @@ then
 else
 	echo -e "\\nError while copying resources!"
 fi
+
+echo -e "\\nInstalling additionals libs .."
+echo ${ADDITIONAL_LIBS_URLS}
+for url in "${ADDITIONAL_LIBS_URLS}"; do
+	echo "\\nDownloading library from ${url}"
+	if curl -LJO ${url}
+	then
+		if unzip *.zip -o -d /additional-libs/
+		then
+			echo -e "\\nFile decompressed successfully"
+			rm *.zip
+		else
+			echo -e "\\nError while decompressing file"
+			exit 1
+		fi
+	else
+		echo -e "\\nError while downloading file"
+		exit 1
+	fi
+done
+
+echo -e "\\nAdditionals libs installed"
+
+
+chown -R ${NIFI_UID}:${NIFI_GID} /nifi-conf/redmic
+chmod -R 755 /nifi-conf/redmic
+chown -R ${NIFI_UID}:${NIFI_GID} /additional-libs
+chmod -R 755 /additional-libs

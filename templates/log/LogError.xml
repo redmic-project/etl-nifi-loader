@@ -159,7 +159,7 @@
                     </position>
                     <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
                     <name>Alert output</name>
-                    <state>RUNNING</state>
+                    <state>STOPPED</state>
                     <type>OUTPUT_PORT</type>
                 </outputPorts>
                 <processors>
@@ -428,7 +428,7 @@
     "operation": "default",
     "spec": {
       "to": "${alertEmail}",
-      "subject": "NiFi. Error en la ingesta de datos.",
+      "subject": "NiFi. Error en la ingesta de datos. ${ingestName}",
       "type": "ERROR",
       "message": "Para más información acceder al log de NiFi"
     }
@@ -521,7 +521,7 @@
                             </entry>
                             <entry>
 <key>log-message</key>
-<value>Error [${now():format("yyyy-MM-dd'T'HH:mm:ss.SSS", "GMT")}] : Error en la ingesta de datos. Revisar log de connect para más información. Registro = ${record}</value>
+<value>Error [${now():format("yyyy-MM-dd'T'HH:mm:ss.SSS", "GMT")}] : Error en la ingesta de datos (${ingestName}). Registro que causó el error = ${record}</value>
                             </entry>
                         </properties>
                         <runDurationMillis>0</runDurationMillis>
@@ -535,7 +535,7 @@
                         <autoTerminate>true</autoTerminate>
                         <name>success</name>
                     </relationships>
-                    <state>RUNNING</state>
+                    <state>STOPPED</state>
                     <style>
                         <entry>
                             <key>background-color</key>
@@ -549,5 +549,5 @@
             <variables/>
         </processGroups>
     </snippet>
-    <timestamp>02/15/2019 08:38:02 UTC</timestamp>
+    <timestamp>03/27/2019 12:31:41 UTC</timestamp>
 </template>

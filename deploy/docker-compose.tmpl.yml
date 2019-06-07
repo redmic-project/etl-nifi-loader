@@ -1,12 +1,17 @@
 version: '3.5'
 
 services:
-  nifi-conf-loader:
+  nifi-loader:
     image: ${IMAGE_NAME}:${IMAGE_TAG:-latest}
+    environment:
+      - NIFI_UID
+      - NIFI_GID
+      - ADDITIONAL_LIBS_URLS
     networks:
       - kafka-net
     volumes:
       - nifi-conf-vol:/nifi-conf
+      - nifi-additional-libs-vol:/additional-libs
     deploy:
       mode: replicated
       replicas: 1
@@ -27,3 +32,6 @@ networks:
 volumes:
   nifi-conf-vol:
     name: ${NIFI_CONF_VOL_NAME:-nifi-conf-vol}
+
+  nifi-additional-libs-vol:
+    name: ${NIFI_ADDITIONAL_LIBS_VOL_NAME:-nifi-additional-libs-vol}
