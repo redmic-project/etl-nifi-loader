@@ -7,7 +7,7 @@ find /redmic-nifi-conf
 echo -e "\\nRemoving old resources .."
 
 rm -rf /nifi-conf/redmic
-mkdir /nifi-conf/redmic
+mkdir -p /nifi-conf/redmic/libs
 
 echo -e "\\nCopying resources .."
 
@@ -24,7 +24,7 @@ for url in "${ADDITIONAL_LIBS_URLS}"; do
 	echo "\\nDownloading library from ${url}"
 	if curl -LJO ${url}
 	then
-		if unzip *.zip -o -d /additional-libs/
+		if unzip *.zip -o -d /nifi-conf/redmic/libs
 		then
 			echo -e "\\nFile decompressed successfully"
 			rm *.zip
@@ -43,5 +43,3 @@ echo -e "\\nAdditionals libs installed"
 
 chown -R ${NIFI_UID}:${NIFI_GID} /nifi-conf/redmic
 chmod -R 755 /nifi-conf/redmic
-chown -R ${NIFI_UID}:${NIFI_GID} /additional-libs
-chmod -R 755 /additional-libs
