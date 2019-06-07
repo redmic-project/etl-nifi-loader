@@ -41,3 +41,4 @@ done
 echo -e "\\nAdditionals libs installed"
 
 chown -R ${NIFI_UID}:${NIFI_GID} /additional-libs
+chmod -R 755 /additional-libs
