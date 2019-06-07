@@ -1,7 +1,7 @@
 version: '3.5'
 
 services:
-  nifi-conf-loader:
+  nifi-loader:
     image: ${IMAGE_NAME}:${IMAGE_TAG:-latest}
     environment:
       - NIFI_UID
