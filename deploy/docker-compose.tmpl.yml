@@ -3,6 +3,10 @@ version: '3.5'
 services:
   nifi-conf-loader:
     image: ${IMAGE_NAME}:${IMAGE_TAG:-latest}
+    environment:
+      - NIFI_UID
+      - NIFI_GID
+      - ADDITIONAL_LIBS_URLS
     networks:
       - kafka-net
     volumes:
