@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <template encoding-version="1.2">
-    <description>Descarga, procesa e inserta en Kafka las playas del Gobierno de Canarias</description>
+    <description>Extract, transform and load in Kafka</description>
     <groupId>e625c1ce-0168-1000-43b7-2915b8910df3</groupId>
-    <name>BeachGesplan</name>
+    <name>Beaches Gesplan</name>
     <snippet>
         <controllerServices>
             <id>3009a44e-bd3b-3f97-0000-000000000000</id>
@@ -325,9 +325,9 @@
                     </value>
                 </entry>
                 <entry>
-                    <key>lengthInMeter</key>
+                    <key>lengthInMeters</key>
                     <value>
-                        <name>lengthInMeter</name>
+                        <name>lengthInMeters</name>
                     </value>
                 </entry>
                 <entry>
@@ -343,12 +343,6 @@
                     </value>
                 </entry>
                 <entry>
-                    <key>mapamaName</key>
-                    <value>
-                        <name>mapamaName</name>
-                    </value>
-                </entry>
-                <entry>
                     <key>muncipalityId</key>
                     <value>
                         <name>muncipalityId</name>
@@ -361,21 +355,33 @@
                     </value>
                 </entry>
                 <entry>
-                    <key>municipalityName</key>
+                    <key>nameByMapama</key>
                     <value>
-                        <name>municipalityName</name>
+                        <name>nameByMapama</name>
+                    </value>
+                </entry>
+                <entry>
+                    <key>nameByMunicipality</key>
+                    <value>
+                        <name>nameByMunicipality</name>
+                    </value>
+                </entry>
+                <entry>
+                    <key>nameByPilotajeLitoral</key>
+                    <value>
+                        <name>nameByPilotajeLitoral</name>
+                    </value>
+                </entry>
+                <entry>
+                    <key>nameByRedmic</key>
+                    <value>
+                        <name>nameByRedmic</name>
                     </value>
                 </entry>
                 <entry>
                     <key>pilotajeLitoralCode</key>
                     <value>
                         <name>pilotajeLitoralCode</name>
-                    </value>
-                </entry>
-                <entry>
-                    <key>pilotajeLitoralName</key>
-                    <value>
-                        <name>pilotajeLitoralName</name>
                     </value>
                 </entry>
                 <entry>
@@ -388,12 +394,6 @@
                     <key>qFlag</key>
                     <value>
                         <name>qFlag</name>
-                    </value>
-                </entry>
-                <entry>
-                    <key>redmicName</key>
-                    <value>
-                        <name>redmicName</name>
                     </value>
                 </entry>
                 <entry>
@@ -427,9 +427,9 @@
                     </value>
                 </entry>
                 <entry>
-                    <key>widthInMeter</key>
+                    <key>widthInMeters</key>
                     <value>
-                        <name>widthInMeter</name>
+                        <name>widthInMeters</name>
                     </value>
                 </entry>
             </descriptors>
@@ -508,8 +508,8 @@
                     <value>$.latitude</value>
                 </entry>
                 <entry>
-                    <key>lengthInMeter</key>
-                    <value>$.lengthInMeter</value>
+                    <key>lengthInMeters</key>
+                    <value>$.lengthInMeters</value>
                 </entry>
                 <entry>
                     <key>longitude</key>
@@ -520,28 +520,32 @@
                     <value>$.mapamaCode</value>
                 </entry>
                 <entry>
-                    <key>mapamaName</key>
-                    <value>$.mapamaName</value>
-                </entry>
-                <entry>
                     <key>muncipalityId</key>
-                    <value>$.muncipalityId</value>
+                    <value>$.municipalityId</value>
                 </entry>
                 <entry>
                     <key>municipality</key>
                     <value>$.municipality</value>
                 </entry>
                 <entry>
-                    <key>municipalityName</key>
-                    <value>$.municipalityName</value>
+                    <key>nameByMapama</key>
+                    <value>$.nameByMapama</value>
+                </entry>
+                <entry>
+                    <key>nameByMunicipality</key>
+                    <value>$.nameByMunicipality</value>
+                </entry>
+                <entry>
+                    <key>nameByPilotajeLitoral</key>
+                    <value>$.nameByPilotajeLitoral</value>
+                </entry>
+                <entry>
+                    <key>nameByRedmic</key>
+                    <value>$.nameByRedmic</value>
                 </entry>
                 <entry>
                     <key>pilotajeLitoralCode</key>
                     <value>$.pilotajeLitoralCode</value>
-                </entry>
-                <entry>
-                    <key>pilotajeLitoralName</key>
-                    <value>$.pilotajeLitoralName</value>
                 </entry>
                 <entry>
                     <key>protectionLevel</key>
@@ -550,10 +554,6 @@
                 <entry>
                     <key>qFlag</key>
                     <value>$.qFlag</value>
-                </entry>
-                <entry>
-                    <key>redmicName</key>
-                    <value>$.redmicName</value>
                 </entry>
                 <entry>
                     <key>sandType</key>
@@ -576,8 +576,8 @@
                     <value>$.vFlag</value>
                 </entry>
                 <entry>
-                    <key>widthInMeter</key>
-                    <value>$.widthInMeter</value>
+                    <key>widthInMeters</key>
+                    <value>$.widthInMeters</value>
                 </entry>
             </properties>
             <state>ENABLED</state>
@@ -1147,7 +1147,7 @@
                         <runDurationMillis>0</runDurationMillis>
                         <schedulingPeriod>0 0 3 1/1 * ?</schedulingPeriod>
                         <schedulingStrategy>CRON_DRIVEN</schedulingStrategy>
-                        <yieldDuration>1 sec</yieldDuration>
+                        <yieldDuration>10 min</yieldDuration>
                     </config>
                     <executionNodeRestricted>false</executionNodeRestricted>
                     <name>Get beaches from API GesPlan</name>
@@ -1171,7 +1171,7 @@
                         <autoTerminate>true</autoTerminate>
                         <name>Retry</name>
                     </relationships>
-                    <state>RUNNING</state>
+                    <state>STOPPED</state>
                     <style/>
                     <type>org.apache.nifi.processors.standard.InvokeHTTP</type>
                 </processors>
@@ -1253,11 +1253,11 @@
       "geometry": "geom",
       "properties": {
         "municipio": "municipality",
-        "nombre_municipio": "municipalityName",
+        "nombre_municipio": "nameByMunicipality",
         "isla": "island",
-        "nombre_mapama": "mapamaName",
+        "nombre_mapama": "nameByMapama",
         "codigo_mapama": "mapamaCode",
-        "nombre_pilotaje_litoral": "pilotajeLitoralName",
+        "nombre_pilotaje_litoral": "nameByPilotajeLitoral",
         "codigo_pilotaje_litoral": "pilotajeLitoralCode",
         "playa_o_zbm": "classification",
         "coordenada_geografica_longitud": "longitude",
@@ -1265,17 +1265,17 @@
         "clasificacion": "dangerLevel",
         "afluencia": "influx",
         "grado_de_proteccion": "protectionLevel",
-        "longitud_m": "lengthInMeter",
-        "anchura_m": "widthInMeter",
+        "longitud_m": "lengthInMeters",
+        "anchura_m": "widthInMeters",
         "composicion": "groundType",
         "tipo_de_arena": "sandType",
         "condiciones_bano": "seaCondition",
         "forma_de_acceso": "accessWay",
         "grado_urbanizacion": "urbanizationLevel",
         "ultima_actualizacion": "updated",
-        "id_isla_municipio": "muncipalityId",
+        "id_isla_municipio": "municipalityId",
         "id_dgse": "dgseId",
-        "redmicName": "redmicName",
+        "redmicName": "nameByRedmic",
         "qFlag": "qFlag",
         "vFlag": "vFlag"
       }
@@ -1315,7 +1315,7 @@
                         <autoTerminate>false</autoTerminate>
                         <name>success</name>
                     </relationships>
-                    <state>RUNNING</state>
+                    <state>STOPPED</state>
                     <style/>
                     <type>org.apache.nifi.processors.standard.JoltTransformJSON</type>
                 </processors>
@@ -1436,7 +1436,7 @@
                         <autoTerminate>false</autoTerminate>
                         <name>success</name>
                     </relationships>
-                    <state>RUNNING</state>
+                    <state>STOPPED</state>
                     <style/>
                     <type>org.apache.nifi.processors.groovyx.ExecuteGroovyScript</type>
                 </processors>
@@ -1502,7 +1502,7 @@
                         <autoTerminate>false</autoTerminate>
                         <name>split</name>
                     </relationships>
-                    <state>RUNNING</state>
+                    <state>STOPPED</state>
                     <style/>
                     <type>org.apache.nifi.processors.standard.SplitJson</type>
                 </processors>
@@ -1742,7 +1742,7 @@
                         <autoTerminate>true</autoTerminate>
                         <name>success</name>
                     </relationships>
-                    <state>RUNNING</state>
+                    <state>STOPPED</state>
                     <style/>
                     <type>org.apache.nifi.processors.kafka.pubsub.PublishKafkaRecord_2_0</type>
                 </processors>
@@ -1756,5 +1756,5 @@
             </variables>
         </processGroups>
     </snippet>
-    <timestamp>06/07/2019 10:32:10 UTC</timestamp>
+    <timestamp>06/10/2019 11:57:26 UTC</timestamp>
 </template>
