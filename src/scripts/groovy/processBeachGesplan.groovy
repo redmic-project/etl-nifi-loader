@@ -1,10 +1,8 @@
-package transforms.beach
-
 import geoscript.geom.Geometry
 import geoscript.geom.io.*
 import groovy.json.JsonOutput
 import groovy.json.JsonSlurper
-/*
+
 @Grab(group='commons-io', module='commons-io', version='2.6')
 import org.apache.commons.io.IOUtils
 import org.apache.nifi.processor.io.StreamCallback
@@ -38,7 +36,6 @@ flowFile = session.write(flowFile, { inputStream, outputStream ->
 } as StreamCallback)
 
 session.transfer(flowFile, REL_SUCCESS)
-*/
 
 def getConfigValue(flowFile, attrName) {
     def value = binding.getVariable(attrName)?.evaluateAttributeExpressions(flowFile).value
