@@ -37,7 +37,6 @@ flowFile = session.write(flowFile, { inputStream, outputStream ->
 
 session.transfer(flowFile, REL_SUCCESS)
 
-
 def getConfigValue(flowFile, attrName) {
     def value = binding.getVariable(attrName)?.evaluateAttributeExpressions(flowFile).value
     value ? parseVariable(value) : current
@@ -49,7 +48,7 @@ def parseVariable(value) {
 
 def processBeach(json, beach_field_names = null, capitalize_field_names = null, integer_field_names = null,
                  trash_regex = ~/…|\d{2,}|PLAYA\sSIN\sNOMBRE|GESPLAN|NULL|NONE|[()]|PLAYA\s\d{2,}/ ) {
-    json.geometry = convertGeoJsonTowkt(JsonOutput.toJson(json.geometry))
+    json.geometry = convertGeoJsonToewkt(JsonOutput.toJson(json.geometry))
 
     // Choose name
     if (beach_field_names) {
@@ -79,10 +78,10 @@ def processBeach(json, beach_field_names = null, capitalize_field_names = null, 
     qualityControl(json)
 }
 
-def convertGeoJsonTowkt(geojson) {
+def convertGeoJsonToewkt(geojson) {
     Geometry geom = Geometry.fromString(geojson)
     WktWriter writer = new WktWriter()
-    geom?.valid ? writer.write(geom) : null
+    geom?.valid ? 'SRID=4326;' + writer.write(geom) : null
 }
 
 def deleteTrash(text, trash_regex = ~/…|\d{2,}|PLAYA\sSIN\sNOMBRE|GESPLAN|NULL|NONE|[()]|PLAYA\s\d{2,}/) {
