@@ -1030,6 +1030,7 @@
                             </entry>
                             <entry>
 <key>message-key-field</key>
+<value>mmsi</value>
                             </entry>
                             <entry>
 <key>max.request.size</key>
