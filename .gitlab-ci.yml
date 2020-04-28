@@ -14,10 +14,3 @@ stages:
 variables:
   STACK: etl
   STATUS_CHECK_DELAY: 30
-
-.deploy:
-  script:
-    - >
-      deploy.sh IMAGE_NAME=${IMAGE_NAME} IMAGE_TAG=${IMAGE_TAG}
-      NIFI_UID=${NNIFI_UID} NIFI_GID=${NIFI_GID}
-      ADDITIONAL_LIBS_URLS="${ADDITIONAL_LIBS_URLS}"
