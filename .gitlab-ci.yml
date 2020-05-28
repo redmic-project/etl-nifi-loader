@@ -5,12 +5,21 @@ include:
   - project: 'redmic-project/gitlab-ci-templates'
     ref: master
     file: '/deployment.yml'
+  - project: 'redmic-project/gitlab-ci-templates'
+    ref: master
+    file: '/deployment-custom-image.yml'
 
 stages:
+  - pre-package
   - package
-  - test-package
+  - post-package
   - deploy
 
 variables:
-  STACK: etl
-  STATUS_CHECK_DELAY: 30
+  PROJECT_PARENT_NAME: etl
+
+.deploy:
+  variables:
+    STACK: ${PROJECT_PARENT_NAME}
+    SERVICES_TO_CHECK: ${PROJECT_PARENT_NAME}_${CI_PROJECT_NAME}
+    STATUS_CHECK_DELAY: 60
