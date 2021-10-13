@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <template encoding-version="1.2">
     <description>Obtiene los datos de la transformación y los guarda en kafka. Los datos deben tener el esquema de timeseries.</description>
-    <groupId>4bc31514-0168-1000-a9a5-905f7192db61</groupId>
+    <groupId>e1ebbc15-0168-1000-f3e0-3a8af19c9b04</groupId>
     <name>LoadTimeseriesInKafka</name>
     <snippet>
         <controllerServices>
-            <id>2299f59c-9e33-3d94-0000-000000000000</id>
-            <parentGroupId>2e05f8db-0f5f-3036-0000-000000000000</parentGroupId>
+            <id>8e30c335-bad0-3610-0000-000000000000</id>
+            <parentGroupId>9cebb2d2-fdb0-3ed4-0000-000000000000</parentGroupId>
             <bundle>
                 <artifact>nifi-record-serialization-services-nar</artifact>
                 <group>org.apache.nifi</group>
@@ -77,7 +77,7 @@
                 </entry>
                 <entry>
                     <key>schema-registry</key>
-                    <value>93b25bc4-c49b-34e4-0000-000000000000</value>
+                    <value>d737c4d3-ef88-3329-0000-000000000000</value>
                 </entry>
                 <entry>
                     <key>schema-name</key>
@@ -91,17 +91,19 @@
                 </entry>
                 <entry>
                     <key>schema-text</key>
+                    <value>${avro.schema}</value>
                 </entry>
                 <entry>
                     <key>compression-format</key>
+                    <value>NONE</value>
                 </entry>
             </properties>
             <state>ENABLED</state>
             <type>org.apache.nifi.avro.AvroRecordSetWriter</type>
         </controllerServices>
         <controllerServices>
-            <id>93b25bc4-c49b-34e4-0000-000000000000</id>
-            <parentGroupId>2e05f8db-0f5f-3036-0000-000000000000</parentGroupId>
+            <id>d737c4d3-ef88-3329-0000-000000000000</id>
+            <parentGroupId>9cebb2d2-fdb0-3ed4-0000-000000000000</parentGroupId>
             <bundle>
                 <artifact>nifi-confluent-platform-nar</artifact>
                 <group>org.apache.nifi</group>
@@ -153,20 +155,23 @@
                 </entry>
                 <entry>
                     <key>timeout</key>
+                    <value>30 secs</value>
                 </entry>
                 <entry>
                     <key>cache-size</key>
+                    <value>1000</value>
                 </entry>
                 <entry>
                     <key>cache-expiration</key>
+                    <value>1 hour</value>
                 </entry>
             </properties>
             <state>ENABLED</state>
             <type>org.apache.nifi.confluent.schemaregistry.ConfluentSchemaRegistry</type>
         </controllerServices>
         <controllerServices>
-            <id>ef7c419a-ddb7-3d14-0000-000000000000</id>
-            <parentGroupId>2e05f8db-0f5f-3036-0000-000000000000</parentGroupId>
+            <id>ef7dcf7e-6455-31da-0000-000000000000</id>
+            <parentGroupId>9cebb2d2-fdb0-3ed4-0000-000000000000</parentGroupId>
             <bundle>
                 <artifact>nifi-record-serialization-services-nar</artifact>
                 <group>org.apache.nifi</group>
@@ -319,10 +324,11 @@
             <properties>
                 <entry>
                     <key>schema-access-strategy</key>
+                    <value>schema-name</value>
                 </entry>
                 <entry>
                     <key>schema-registry</key>
-                    <value>93b25bc4-c49b-34e4-0000-000000000000</value>
+                    <value>d737c4d3-ef88-3329-0000-000000000000</value>
                 </entry>
                 <entry>
                     <key>schema-name</key>
@@ -336,6 +342,7 @@
                 </entry>
                 <entry>
                     <key>schema-text</key>
+                    <value>${avro.schema}</value>
                 </entry>
                 <entry>
                     <key>Date Format</key>
@@ -407,8 +414,8 @@
             <type>org.apache.nifi.json.JsonPathReader</type>
         </controllerServices>
         <processors>
-            <id>0de27046-d1c0-3f90-0000-000000000000</id>
-            <parentGroupId>2e05f8db-0f5f-3036-0000-000000000000</parentGroupId>
+            <id>2f76de69-bb3c-39c7-0000-000000000000</id>
+            <parentGroupId>9cebb2d2-fdb0-3ed4-0000-000000000000</parentGroupId>
             <position>
                 <x>0.0</x>
                 <y>0.0</y>
@@ -562,15 +569,15 @@
                     </entry>
                     <entry>
                         <key>record-reader</key>
-                        <value>ef7c419a-ddb7-3d14-0000-000000000000</value>
+                        <value>ef7dcf7e-6455-31da-0000-000000000000</value>
                     </entry>
                     <entry>
                         <key>record-writer</key>
-                        <value>2299f59c-9e33-3d94-0000-000000000000</value>
+                        <value>8e30c335-bad0-3610-0000-000000000000</value>
                     </entry>
                     <entry>
                         <key>use-transactions</key>
-                        <value>true</value>
+                        <value>false</value>
                     </entry>
                     <entry>
                         <key>acks</key>
@@ -652,5 +659,5 @@
             <type>org.apache.nifi.processors.kafka.pubsub.PublishKafkaRecord_2_0</type>
         </processors>
     </snippet>
-    <timestamp>01/29/2019 12:18:44 UTC</timestamp>
+    <timestamp>11/14/2019 13:19:20 UTC</timestamp>
 </template>

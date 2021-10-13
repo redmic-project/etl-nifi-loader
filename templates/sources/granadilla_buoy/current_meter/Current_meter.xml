@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <template encoding-version="1.2">
-    <description>Genera un mensaje de error cuando recibe algún problema de cualquiera de los subprocesos que se conectan a él. Este mensaje se envía al log de NiFi. También crea un mensaje de alerta para enviarlo a kafka</description>
-    <groupId>e1ebbc15-0168-1000-f3e0-3a8af19c9b04</groupId>
-    <name>LogError</name>
+    <description>Proceso para obtener datos del correntímetro vía MQTT</description>
+    <groupId>3329a3c1-eed1-3950-1a0d-fbf799a5797c</groupId>
+    <name>Current meter</name>
     <snippet>
         <processGroups>
-            <id>8d185238-f737-3445-0000-000000000000</id>
-            <parentGroupId>9cebb2d2-fdb0-3ed4-0000-000000000000</parentGroupId>
+            <id>ca6bb456-e6e2-3f62-0000-000000000000</id>
+            <parentGroupId>30a01124-0db6-39c6-0000-000000000000</parentGroupId>
             <position>
                 <x>0.0</x>
                 <y>0.0</y>
@@ -14,13 +14,63 @@
             <comments></comments>
             <contents>
                 <connections>
-                    <id>7b7879ae-9682-33ba-0000-000000000000</id>
-                    <parentGroupId>8d185238-f737-3445-0000-000000000000</parentGroupId>
+                    <id>09afb77a-2d10-3e60-0000-000000000000</id>
+                    <parentGroupId>ca6bb456-e6e2-3f62-0000-000000000000</parentGroupId>
                     <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
                     <backPressureObjectThreshold>10000</backPressureObjectThreshold>
                     <destination>
-                        <groupId>8d185238-f737-3445-0000-000000000000</groupId>
-                        <id>fa80d3a6-b345-3881-0000-000000000000</id>
+                        <groupId>ca6bb456-e6e2-3f62-0000-000000000000</groupId>
+                        <id>88dfd4ed-3540-303b-0000-000000000000</id>
+                        <type>PROCESSOR</type>
+                    </destination>
+                    <flowFileExpiration>0 sec</flowFileExpiration>
+                    <labelIndex>1</labelIndex>
+                    <loadBalanceCompression>DO_NOT_COMPRESS</loadBalanceCompression>
+                    <loadBalancePartitionAttribute></loadBalancePartitionAttribute>
+                    <loadBalanceStatus>LOAD_BALANCE_NOT_CONFIGURED</loadBalanceStatus>
+                    <loadBalanceStrategy>DO_NOT_LOAD_BALANCE</loadBalanceStrategy>
+                    <name></name>
+                    <selectedRelationships>success</selectedRelationships>
+                    <source>
+                        <groupId>ca6bb456-e6e2-3f62-0000-000000000000</groupId>
+                        <id>a337a8aa-20e2-3da6-0000-000000000000</id>
+                        <type>PROCESSOR</type>
+                    </source>
+                    <zIndex>0</zIndex>
+                </connections>
+                <connections>
+                    <id>212fe0b6-f5d2-3052-0000-000000000000</id>
+                    <parentGroupId>ca6bb456-e6e2-3f62-0000-000000000000</parentGroupId>
+                    <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
+                    <backPressureObjectThreshold>10000</backPressureObjectThreshold>
+                    <destination>
+                        <groupId>ca6bb456-e6e2-3f62-0000-000000000000</groupId>
+                        <id>a337a8aa-20e2-3da6-0000-000000000000</id>
+                        <type>PROCESSOR</type>
+                    </destination>
+                    <flowFileExpiration>0 sec</flowFileExpiration>
+                    <labelIndex>1</labelIndex>
+                    <loadBalanceCompression>DO_NOT_COMPRESS</loadBalanceCompression>
+                    <loadBalancePartitionAttribute></loadBalancePartitionAttribute>
+                    <loadBalanceStatus>LOAD_BALANCE_NOT_CONFIGURED</loadBalanceStatus>
+                    <loadBalanceStrategy>DO_NOT_LOAD_BALANCE</loadBalanceStrategy>
+                    <name></name>
+                    <selectedRelationships>Message</selectedRelationships>
+                    <source>
+                        <groupId>ca6bb456-e6e2-3f62-0000-000000000000</groupId>
+                        <id>15265e58-077d-380b-0000-000000000000</id>
+                        <type>PROCESSOR</type>
+                    </source>
+                    <zIndex>0</zIndex>
+                </connections>
+                <connections>
+                    <id>3a149d12-77e6-347a-0000-000000000000</id>
+                    <parentGroupId>ca6bb456-e6e2-3f62-0000-000000000000</parentGroupId>
+                    <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
+                    <backPressureObjectThreshold>10000</backPressureObjectThreshold>
+                    <destination>
+                        <groupId>ca6bb456-e6e2-3f62-0000-000000000000</groupId>
+                        <id>581be703-54fe-3b27-0000-000000000000</id>
                         <type>OUTPUT_PORT</type>
                     </destination>
                     <flowFileExpiration>0 sec</flowFileExpiration>
@@ -32,21 +82,21 @@
                     <name></name>
                     <selectedRelationships>success</selectedRelationships>
                     <source>
-                        <groupId>8d185238-f737-3445-0000-000000000000</groupId>
-                        <id>9ef43602-329a-3bba-0000-000000000000</id>
+                        <groupId>ca6bb456-e6e2-3f62-0000-000000000000</groupId>
+                        <id>88dfd4ed-3540-303b-0000-000000000000</id>
                         <type>PROCESSOR</type>
                     </source>
                     <zIndex>0</zIndex>
                 </connections>
                 <connections>
-                    <id>c036fdc6-1319-383b-0000-000000000000</id>
-                    <parentGroupId>8d185238-f737-3445-0000-000000000000</parentGroupId>
+                    <id>f7e8c42b-3680-3bc5-0000-000000000000</id>
+                    <parentGroupId>ca6bb456-e6e2-3f62-0000-000000000000</parentGroupId>
                     <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
                     <backPressureObjectThreshold>10000</backPressureObjectThreshold>
                     <destination>
-                        <groupId>8d185238-f737-3445-0000-000000000000</groupId>
-                        <id>32ec2d10-84d7-3f75-0000-000000000000</id>
-                        <type>PROCESSOR</type>
+                        <groupId>ca6bb456-e6e2-3f62-0000-000000000000</groupId>
+                        <id>dae014df-da0b-36b5-0000-000000000000</id>
+                        <type>OUTPUT_PORT</type>
                     </destination>
                     <flowFileExpiration>0 sec</flowFileExpiration>
                     <labelIndex>1</labelIndex>
@@ -55,125 +105,50 @@
                     <loadBalanceStatus>LOAD_BALANCE_NOT_CONFIGURED</loadBalanceStatus>
                     <loadBalanceStrategy>DO_NOT_LOAD_BALANCE</loadBalanceStrategy>
                     <name></name>
-                    <selectedRelationships>matched</selectedRelationships>
-                    <selectedRelationships>unmatched</selectedRelationships>
+                    <selectedRelationships>activity.restored</selectedRelationships>
+                    <selectedRelationships>inactive</selectedRelationships>
                     <source>
-                        <groupId>8d185238-f737-3445-0000-000000000000</groupId>
-                        <id>23151643-4e10-316a-0000-000000000000</id>
+                        <groupId>ca6bb456-e6e2-3f62-0000-000000000000</groupId>
+                        <id>88dfd4ed-3540-303b-0000-000000000000</id>
                         <type>PROCESSOR</type>
                     </source>
                     <zIndex>0</zIndex>
                 </connections>
-                <connections>
-                    <id>de5738eb-643a-322c-0000-000000000000</id>
-                    <parentGroupId>8d185238-f737-3445-0000-000000000000</parentGroupId>
-                    <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
-                    <backPressureObjectThreshold>10000</backPressureObjectThreshold>
-                    <destination>
-                        <groupId>8d185238-f737-3445-0000-000000000000</groupId>
-                        <id>9ef43602-329a-3bba-0000-000000000000</id>
-                        <type>PROCESSOR</type>
-                    </destination>
-                    <flowFileExpiration>0 sec</flowFileExpiration>
-                    <labelIndex>1</labelIndex>
-                    <loadBalanceCompression>DO_NOT_COMPRESS</loadBalanceCompression>
-                    <loadBalancePartitionAttribute></loadBalancePartitionAttribute>
-                    <loadBalanceStatus>LOAD_BALANCE_NOT_CONFIGURED</loadBalanceStatus>
-                    <loadBalanceStrategy>DO_NOT_LOAD_BALANCE</loadBalanceStrategy>
-                    <name></name>
-                    <selectedRelationships>matched</selectedRelationships>
-                    <selectedRelationships>unmatched</selectedRelationships>
-                    <source>
-                        <groupId>8d185238-f737-3445-0000-000000000000</groupId>
-                        <id>23151643-4e10-316a-0000-000000000000</id>
-                        <type>PROCESSOR</type>
-                    </source>
-                    <zIndex>0</zIndex>
-                </connections>
-                <connections>
-                    <id>e22131a1-5a90-301d-0000-000000000000</id>
-                    <parentGroupId>8d185238-f737-3445-0000-000000000000</parentGroupId>
-                    <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
-                    <backPressureObjectThreshold>10000</backPressureObjectThreshold>
-                    <destination>
-                        <groupId>8d185238-f737-3445-0000-000000000000</groupId>
-                        <id>32ec2d10-84d7-3f75-0000-000000000000</id>
-                        <type>PROCESSOR</type>
-                    </destination>
-                    <flowFileExpiration>0 sec</flowFileExpiration>
-                    <labelIndex>1</labelIndex>
-                    <loadBalanceCompression>DO_NOT_COMPRESS</loadBalanceCompression>
-                    <loadBalancePartitionAttribute></loadBalancePartitionAttribute>
-                    <loadBalanceStatus>LOAD_BALANCE_NOT_CONFIGURED</loadBalanceStatus>
-                    <loadBalanceStrategy>DO_NOT_LOAD_BALANCE</loadBalanceStrategy>
-                    <name></name>
-                    <selectedRelationships>failure</selectedRelationships>
-                    <source>
-                        <groupId>8d185238-f737-3445-0000-000000000000</groupId>
-                        <id>9ef43602-329a-3bba-0000-000000000000</id>
-                        <type>PROCESSOR</type>
-                    </source>
-                    <zIndex>0</zIndex>
-                </connections>
-                <connections>
-                    <id>f717f146-002e-3d2d-0000-000000000000</id>
-                    <parentGroupId>8d185238-f737-3445-0000-000000000000</parentGroupId>
-                    <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
-                    <backPressureObjectThreshold>10000</backPressureObjectThreshold>
-                    <destination>
-                        <groupId>8d185238-f737-3445-0000-000000000000</groupId>
-                        <id>23151643-4e10-316a-0000-000000000000</id>
-                        <type>PROCESSOR</type>
-                    </destination>
-                    <flowFileExpiration>0 sec</flowFileExpiration>
-                    <labelIndex>1</labelIndex>
-                    <loadBalanceCompression>DO_NOT_COMPRESS</loadBalanceCompression>
-                    <loadBalancePartitionAttribute></loadBalancePartitionAttribute>
-                    <loadBalanceStatus>LOAD_BALANCE_NOT_CONFIGURED</loadBalanceStatus>
-                    <loadBalanceStrategy>DO_NOT_LOAD_BALANCE</loadBalanceStrategy>
-                    <name></name>
-                    <source>
-                        <groupId>8d185238-f737-3445-0000-000000000000</groupId>
-                        <id>10fa827e-ae1f-3be6-0000-000000000000</id>
-                        <type>INPUT_PORT</type>
-                    </source>
-                    <zIndex>0</zIndex>
-                </connections>
-                <inputPorts>
-                    <id>10fa827e-ae1f-3be6-0000-000000000000</id>
-                    <parentGroupId>8d185238-f737-3445-0000-000000000000</parentGroupId>
-                    <position>
-                        <x>-1875.6350951452932</x>
-                        <y>67.29602767122526</y>
-                    </position>
-                    <comments></comments>
-                    <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
-                    <name>Error</name>
-                    <state>RUNNING</state>
-                    <type>INPUT_PORT</type>
-                </inputPorts>
                 <outputPorts>
-                    <id>fa80d3a6-b345-3881-0000-000000000000</id>
-                    <parentGroupId>8d185238-f737-3445-0000-000000000000</parentGroupId>
+                    <id>581be703-54fe-3b27-0000-000000000000</id>
+                    <parentGroupId>ca6bb456-e6e2-3f62-0000-000000000000</parentGroupId>
                     <position>
-                        <x>-449.6436013587213</x>
-                        <y>388.5596374167271</y>
+                        <x>124.79287847474575</x>
+                        <y>234.50677951546595</y>
                     </position>
                     <comments></comments>
                     <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
-                    <name>Notification output</name>
+                    <name>Success output</name>
+                    <state>RUNNING</state>
+                    <type>OUTPUT_PORT</type>
+                </outputPorts>
+                <outputPorts>
+                    <id>dae014df-da0b-36b5-0000-000000000000</id>
+                    <parentGroupId>ca6bb456-e6e2-3f62-0000-000000000000</parentGroupId>
+                    <position>
+                        <x>-297.0294968385972</x>
+                        <y>229.4594893313075</y>
+                    </position>
+                    <comments></comments>
+                    <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+                    <name>Activity monitoring output</name>
                     <state>RUNNING</state>
                     <type>OUTPUT_PORT</type>
                 </outputPorts>
                 <processors>
-                    <id>23151643-4e10-316a-0000-000000000000</id>
-                    <parentGroupId>8d185238-f737-3445-0000-000000000000</parentGroupId>
+                    <id>15265e58-077d-380b-0000-000000000000</id>
+                    <parentGroupId>ca6bb456-e6e2-3f62-0000-000000000000</parentGroupId>
                     <position>
-                        <x>-1330.5878437679949</x>
-                        <y>28.64983423335002</y>
+                        <x>-959.0162353515625</x>
+                        <y>-343.0029001235962</y>
                     </position>
                     <bundle>
-                        <artifact>nifi-standard-nar</artifact>
+                        <artifact>nifi-mqtt-nar</artifact>
                         <group>org.apache.nifi</group>
                         <version>1.8.0</version>
                     </bundle>
@@ -183,213 +158,100 @@
                         <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
                         <descriptors>
                             <entry>
-<key>Character Set</key>
+<key>Broker URI</key>
 <value>
-    <name>Character Set</name>
+    <name>Broker URI</name>
 </value>
                             </entry>
                             <entry>
-<key>Maximum Buffer Size</key>
+<key>Client ID</key>
 <value>
-    <name>Maximum Buffer Size</name>
+    <name>Client ID</name>
 </value>
                             </entry>
                             <entry>
-<key>Maximum Capture Group Length</key>
+<key>Username</key>
 <value>
-    <name>Maximum Capture Group Length</name>
+    <name>Username</name>
 </value>
                             </entry>
                             <entry>
-<key>Enable Canonical Equivalence</key>
+<key>Password</key>
 <value>
-    <name>Enable Canonical Equivalence</name>
+    <name>Password</name>
 </value>
                             </entry>
                             <entry>
-<key>Enable Case-insensitive Matching</key>
+<key>SSL Context Service</key>
 <value>
-    <name>Enable Case-insensitive Matching</name>
+    <identifiesControllerService>org.apache.nifi.ssl.SSLContextService</identifiesControllerService>
+    <name>SSL Context Service</name>
 </value>
                             </entry>
                             <entry>
-<key>Permit Whitespace and Comments in Pattern</key>
+<key>Last Will Topic</key>
 <value>
-    <name>Permit Whitespace and Comments in Pattern</name>
+    <name>Last Will Topic</name>
 </value>
                             </entry>
                             <entry>
-<key>Enable DOTALL Mode</key>
+<key>Last Will Message</key>
 <value>
-    <name>Enable DOTALL Mode</name>
+    <name>Last Will Message</name>
 </value>
                             </entry>
                             <entry>
-<key>Enable Literal Parsing of the Pattern</key>
+<key>Last Will Retain</key>
 <value>
-    <name>Enable Literal Parsing of the Pattern</name>
+    <name>Last Will Retain</name>
 </value>
                             </entry>
                             <entry>
-<key>Enable Multiline Mode</key>
+<key>Last Will QoS Level</key>
 <value>
-    <name>Enable Multiline Mode</name>
+    <name>Last Will QoS Level</name>
 </value>
                             </entry>
                             <entry>
-<key>Enable Unicode-aware Case Folding</key>
+<key>Session state</key>
 <value>
-    <name>Enable Unicode-aware Case Folding</name>
+    <name>Session state</name>
 </value>
                             </entry>
                             <entry>
-<key>Enable Unicode Predefined Character Classes</key>
+<key>MQTT Specification Version</key>
 <value>
-    <name>Enable Unicode Predefined Character Classes</name>
+    <name>MQTT Specification Version</name>
 </value>
                             </entry>
                             <entry>
-<key>Enable Unix Lines Mode</key>
+<key>Connection Timeout (seconds)</key>
 <value>
-    <name>Enable Unix Lines Mode</name>
+    <name>Connection Timeout (seconds)</name>
 </value>
                             </entry>
                             <entry>
-<key>Include Capture Group 0</key>
+<key>Keep Alive Interval (seconds)</key>
 <value>
-    <name>Include Capture Group 0</name>
+    <name>Keep Alive Interval (seconds)</name>
 </value>
                             </entry>
                             <entry>
-<key>extract-text-enable-repeating-capture-group</key>
+<key>Topic Filter</key>
 <value>
-    <name>extract-text-enable-repeating-capture-group</name>
+    <name>Topic Filter</name>
 </value>
                             </entry>
                             <entry>
-<key>record</key>
+<key>Quality of Service(QoS)</key>
 <value>
-    <name>record</name>
-</value>
-                            </entry>
-                        </descriptors>
-                        <executionNode>ALL</executionNode>
-                        <lossTolerant>false</lossTolerant>
-                        <penaltyDuration>30 sec</penaltyDuration>
-                        <properties>
-                            <entry>
-<key>Character Set</key>
-<value>UTF-8</value>
-                            </entry>
-                            <entry>
-<key>Maximum Buffer Size</key>
-<value>4 MB</value>
-                            </entry>
-                            <entry>
-<key>Maximum Capture Group Length</key>
-<value>8000</value>
-                            </entry>
-                            <entry>
-<key>Enable Canonical Equivalence</key>
-<value>false</value>
-                            </entry>
-                            <entry>
-<key>Enable Case-insensitive Matching</key>
-<value>false</value>
-                            </entry>
-                            <entry>
-<key>Permit Whitespace and Comments in Pattern</key>
-<value>true</value>
-                            </entry>
-                            <entry>
-<key>Enable DOTALL Mode</key>
-<value>true</value>
-                            </entry>
-                            <entry>
-<key>Enable Literal Parsing of the Pattern</key>
-<value>false</value>
-                            </entry>
-                            <entry>
-<key>Enable Multiline Mode</key>
-<value>true</value>
-                            </entry>
-                            <entry>
-<key>Enable Unicode-aware Case Folding</key>
-<value>false</value>
-                            </entry>
-                            <entry>
-<key>Enable Unicode Predefined Character Classes</key>
-<value>false</value>
-                            </entry>
-                            <entry>
-<key>Enable Unix Lines Mode</key>
-<value>false</value>
-                            </entry>
-                            <entry>
-<key>Include Capture Group 0</key>
-<value>true</value>
-                            </entry>
-                            <entry>
-<key>extract-text-enable-repeating-capture-group</key>
-<value>true</value>
-                            </entry>
-                            <entry>
-<key>record</key>
-<value>^ (.*)$</value>
-                            </entry>
-                        </properties>
-                        <runDurationMillis>0</runDurationMillis>
-                        <schedulingPeriod>0 sec</schedulingPeriod>
-                        <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
-                        <yieldDuration>1 sec</yieldDuration>
-                    </config>
-                    <executionNodeRestricted>false</executionNodeRestricted>
-                    <name>ExtractRecord</name>
-                    <relationships>
-                        <autoTerminate>false</autoTerminate>
-                        <name>matched</name>
-                    </relationships>
-                    <relationships>
-                        <autoTerminate>false</autoTerminate>
-                        <name>unmatched</name>
-                    </relationships>
-                    <state>RUNNING</state>
-                    <style/>
-                    <type>org.apache.nifi.processors.standard.ExtractText</type>
-                </processors>
-                <processors>
-                    <id>32ec2d10-84d7-3f75-0000-000000000000</id>
-                    <parentGroupId>8d185238-f737-3445-0000-000000000000</parentGroupId>
-                    <position>
-                        <x>-219.6433307645466</x>
-                        <y>23.98044115735047</y>
-                    </position>
-                    <bundle>
-                        <artifact>nifi-standard-nar</artifact>
-                        <group>org.apache.nifi</group>
-                        <version>1.8.0</version>
-                    </bundle>
-                    <config>
-                        <bulletinLevel>WARN</bulletinLevel>
-                        <comments></comments>
-                        <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
-                        <descriptors>
-                            <entry>
-<key>log-level</key>
-<value>
-    <name>log-level</name>
+    <name>Quality of Service(QoS)</name>
 </value>
                             </entry>
                             <entry>
-<key>log-prefix</key>
+<key>Max Queue Size</key>
 <value>
-    <name>log-prefix</name>
-</value>
-                            </entry>
-                            <entry>
-<key>log-message</key>
-<value>
-    <name>log-message</name>
+    <name>Max Queue Size</name>
 </value>
                             </entry>
                         </descriptors>
@@ -398,44 +260,90 @@
                         <penaltyDuration>30 sec</penaltyDuration>
                         <properties>
                             <entry>
-<key>log-level</key>
-<value>error</value>
+<key>Broker URI</key>
+<value>tcp://mqtt_vernemq:1883</value>
                             </entry>
                             <entry>
-<key>log-prefix</key>
-<value>redmic-process</value>
+<key>Client ID</key>
+<value>nifi-granadilla-buoy-current-meter</value>
                             </entry>
                             <entry>
-<key>log-message</key>
-<value>Error [${now():format("yyyy-MM-dd'T'HH:mm:ss.SSS", "GMT")}] : Error en la ingesta de datos (${ingestName}). Registro que causó el error = ${record}</value>
+<key>Username</key>
+<value>oag</value>
+                            </entry>
+                            <entry>
+<key>Password</key>
+                            </entry>
+                            <entry>
+<key>SSL Context Service</key>
+                            </entry>
+                            <entry>
+<key>Last Will Topic</key>
+                            </entry>
+                            <entry>
+<key>Last Will Message</key>
+                            </entry>
+                            <entry>
+<key>Last Will Retain</key>
+                            </entry>
+                            <entry>
+<key>Last Will QoS Level</key>
+                            </entry>
+                            <entry>
+<key>Session state</key>
+<value>true</value>
+                            </entry>
+                            <entry>
+<key>MQTT Specification Version</key>
+<value>0</value>
+                            </entry>
+                            <entry>
+<key>Connection Timeout (seconds)</key>
+<value>30</value>
+                            </entry>
+                            <entry>
+<key>Keep Alive Interval (seconds)</key>
+<value>60</value>
+                            </entry>
+                            <entry>
+<key>Topic Filter</key>
+<value>redmic/activity/1286</value>
+                            </entry>
+                            <entry>
+<key>Quality of Service(QoS)</key>
+<value>0</value>
+                            </entry>
+                            <entry>
+<key>Max Queue Size</key>
+<value>1024</value>
                             </entry>
                         </properties>
                         <runDurationMillis>0</runDurationMillis>
-                        <schedulingPeriod>0 sec</schedulingPeriod>
+                        <schedulingPeriod>200 ms</schedulingPeriod>
                         <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
                         <yieldDuration>1 sec</yieldDuration>
                     </config>
                     <executionNodeRestricted>false</executionNodeRestricted>
-                    <name>LogMessage</name>
+                    <name>Current meter</name>
                     <relationships>
-                        <autoTerminate>true</autoTerminate>
-                        <name>success</name>
+                        <autoTerminate>false</autoTerminate>
+                        <name>Message</name>
                     </relationships>
                     <state>RUNNING</state>
                     <style>
                         <entry>
                             <key>background-color</key>
-                            <value>#f02222</value>
+                            <value>#4e53f2</value>
                         </entry>
                     </style>
-                    <type>org.apache.nifi.processors.standard.LogMessage</type>
+                    <type>org.apache.nifi.processors.mqtt.ConsumeMQTT</type>
                 </processors>
                 <processors>
-                    <id>9ef43602-329a-3bba-0000-000000000000</id>
-                    <parentGroupId>8d185238-f737-3445-0000-000000000000</parentGroupId>
+                    <id>88dfd4ed-3540-303b-0000-000000000000</id>
+                    <parentGroupId>ca6bb456-e6e2-3f62-0000-000000000000</parentGroupId>
                     <position>
-                        <x>-1314.703637625762</x>
-                        <y>320.44243575227995</y>
+                        <x>-309.18152301504983</x>
+                        <y>-336.70565654271593</y>
                     </position>
                     <bundle>
                         <artifact>nifi-standard-nar</artifact>
@@ -448,39 +356,45 @@
                         <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
                         <descriptors>
                             <entry>
-<key>jolt-transform</key>
+<key>Threshold Duration</key>
 <value>
-    <name>jolt-transform</name>
+    <name>Threshold Duration</name>
 </value>
                             </entry>
                             <entry>
-<key>jolt-custom-class</key>
+<key>Continually Send Messages</key>
 <value>
-    <name>jolt-custom-class</name>
+    <name>Continually Send Messages</name>
 </value>
                             </entry>
                             <entry>
-<key>jolt-custom-modules</key>
+<key>Inactivity Message</key>
 <value>
-    <name>jolt-custom-modules</name>
+    <name>Inactivity Message</name>
 </value>
                             </entry>
                             <entry>
-<key>jolt-spec</key>
+<key>Activity Restored Message</key>
 <value>
-    <name>jolt-spec</name>
+    <name>Activity Restored Message</name>
 </value>
                             </entry>
                             <entry>
-<key>Transform Cache Size</key>
+<key>Copy Attributes</key>
 <value>
-    <name>Transform Cache Size</name>
+    <name>Copy Attributes</name>
 </value>
                             </entry>
                             <entry>
-<key>pretty_print</key>
+<key>Monitoring Scope</key>
 <value>
-    <name>pretty_print</name>
+    <name>Monitoring Scope</name>
+</value>
+                            </entry>
+                            <entry>
+<key>Reporting Node</key>
+<value>
+    <name>Reporting Node</name>
 </value>
                             </entry>
                         </descriptors>
@@ -489,43 +403,32 @@
                         <penaltyDuration>30 sec</penaltyDuration>
                         <properties>
                             <entry>
-<key>jolt-transform</key>
-<value>jolt-transform-chain</value>
+<key>Threshold Duration</key>
+<value>5 min</value>
                             </entry>
                             <entry>
-<key>jolt-custom-class</key>
-                            </entry>
-                            <entry>
-<key>jolt-custom-modules</key>
-                            </entry>
-                            <entry>
-<key>jolt-spec</key>
-<value>[{
-    "operation": "default",
-    "spec": {
-      "to": "${alertEmail}",
-      "subject": "Error ingestando datos en nifi para ${ingestName}",
-      "type": "ERROR",
-      "message": "Registro que causó el error = ${record}. Para más información acceder al log de NiFi"
-    }
-  }, {
-    "operation": "shift",
-    "spec": {
-      "to": "&amp;",
-      "subject": "&amp;",
-      "type": "&amp;",
-      "message": "&amp;"
-    }
-  }
-]</value>
-                            </entry>
-                            <entry>
-<key>Transform Cache Size</key>
-<value>1</value>
-                            </entry>
-                            <entry>
-<key>pretty_print</key>
+<key>Continually Send Messages</key>
 <value>false</value>
+                            </entry>
+                            <entry>
+<key>Inactivity Message</key>
+<value>${ingestName} (${now():format('yyyy/MM/dd HH:mm:ss')}): La ingesta de datos lleva inactiva al menos ${inactivityDurationMillis:toNumber():divide(60000)} minuto/s</value>
+                            </entry>
+                            <entry>
+<key>Activity Restored Message</key>
+<value>${ingestName} (${now():format('yyyy/MM/dd HH:mm:ss')}): La ingesta de datos se ha reactivado después de estar inactiva por al menos ${inactivityDurationMillis:toNumber():divide(60000)} minuto/s</value>
+                            </entry>
+                            <entry>
+<key>Copy Attributes</key>
+<value>false</value>
+                            </entry>
+                            <entry>
+<key>Monitoring Scope</key>
+<value>node</value>
+                            </entry>
+                            <entry>
+<key>Reporting Node</key>
+<value>all</value>
                             </entry>
                         </properties>
                         <runDurationMillis>0</runDurationMillis>
@@ -534,10 +437,14 @@
                         <yieldDuration>1 sec</yieldDuration>
                     </config>
                     <executionNodeRestricted>false</executionNodeRestricted>
-                    <name>Create alert message</name>
+                    <name>MonitorActivity</name>
                     <relationships>
                         <autoTerminate>false</autoTerminate>
-                        <name>failure</name>
+                        <name>activity.restored</name>
+                    </relationships>
+                    <relationships>
+                        <autoTerminate>false</autoTerminate>
+                        <name>inactive</name>
                     </relationships>
                     <relationships>
                         <autoTerminate>false</autoTerminate>
@@ -545,12 +452,107 @@
                     </relationships>
                     <state>RUNNING</state>
                     <style/>
-                    <type>org.apache.nifi.processors.standard.JoltTransformJSON</type>
+                    <type>org.apache.nifi.processors.standard.MonitorActivity</type>
+                </processors>
+                <processors>
+                    <id>a337a8aa-20e2-3da6-0000-000000000000</id>
+                    <parentGroupId>ca6bb456-e6e2-3f62-0000-000000000000</parentGroupId>
+                    <position>
+                        <x>-295.3499949553666</x>
+                        <y>-592.8895352323304</y>
+                    </position>
+                    <bundle>
+                        <artifact>nifi-update-attribute-nar</artifact>
+                        <group>org.apache.nifi</group>
+                        <version>1.8.0</version>
+                    </bundle>
+                    <config>
+                        <bulletinLevel>WARN</bulletinLevel>
+                        <comments></comments>
+                        <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+                        <descriptors>
+                            <entry>
+<key>Delete Attributes Expression</key>
+<value>
+    <name>Delete Attributes Expression</name>
+</value>
+                            </entry>
+                            <entry>
+<key>Store State</key>
+<value>
+    <name>Store State</name>
+</value>
+                            </entry>
+                            <entry>
+<key>Stateful Variables Initial Value</key>
+<value>
+    <name>Stateful Variables Initial Value</name>
+</value>
+                            </entry>
+                            <entry>
+<key>configFilePath</key>
+<value>
+    <name>configFilePath</name>
+</value>
+                            </entry>
+                            <entry>
+<key>ingestName</key>
+<value>
+    <name>ingestName</name>
+</value>
+                            </entry>
+                        </descriptors>
+                        <executionNode>ALL</executionNode>
+                        <lossTolerant>false</lossTolerant>
+                        <penaltyDuration>30 sec</penaltyDuration>
+                        <properties>
+                            <entry>
+<key>Delete Attributes Expression</key>
+                            </entry>
+                            <entry>
+<key>Store State</key>
+<value>Do not store state</value>
+                            </entry>
+                            <entry>
+<key>Stateful Variables Initial Value</key>
+                            </entry>
+                            <entry>
+<key>configFilePath</key>
+<value>${configFilePath}</value>
+                            </entry>
+                            <entry>
+<key>ingestName</key>
+<value>${ingestName}</value>
+                            </entry>
+                        </properties>
+                        <runDurationMillis>0</runDurationMillis>
+                        <schedulingPeriod>0 sec</schedulingPeriod>
+                        <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
+                        <yieldDuration>1 sec</yieldDuration>
+                    </config>
+                    <executionNodeRestricted>false</executionNodeRestricted>
+                    <name>UpdateAttribute</name>
+                    <relationships>
+                        <autoTerminate>false</autoTerminate>
+                        <name>success</name>
+                    </relationships>
+                    <state>RUNNING</state>
+                    <style/>
+                    <type>org.apache.nifi.processors.attributes.UpdateAttribute</type>
                 </processors>
             </contents>
-            <name>LogError</name>
-            <variables/>
+            <name>Current meter</name>
+            <variables>
+                <entry>
+                    <key>configFilePath</key>
+                    <value>/opt/nifi/nifi-current/conf/redmic/activities/1286.json</value>
+                </entry>
+                <entry>
+                    <key>ingestName</key>
+                    <value>Granadilla Current Meter</value>
+                </entry>
+            </variables>
         </processGroups>
     </snippet>
-    <timestamp>11/14/2019 13:21:32 UTC</timestamp>
+    <timestamp>11/14/2019 14:21:07 UTC</timestamp>
 </template>

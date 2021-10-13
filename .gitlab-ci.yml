@@ -5,19 +5,21 @@ include:
   - project: 'redmic-project/gitlab-ci-templates'
     ref: master
     file: '/deployment.yml'
+  - project: 'redmic-project/gitlab-ci-templates'
+    ref: master
+    file: '/deployment-custom-image.yml'
 
 stages:
+  - pre-package
   - package
-  - test-package
+  - post-package
   - deploy
 
 variables:
-  STACK: etl
-  STATUS_CHECK_DELAY: 30
+  PROJECT_PARENT_NAME: etl
 
 .deploy:
-  script:
-    - >
-      deploy.sh IMAGE_NAME=${IMAGE_NAME} IMAGE_TAG=${IMAGE_TAG}
-      NIFI_UID=${NNIFI_UID} NIFI_GID=${NIFI_GID}
-      ADDITIONAL_LIBS_URLS="${ADDITIONAL_LIBS_URLS}"
+  variables:
+    STACK: ${PROJECT_PARENT_NAME}
+    SERVICES_TO_CHECK: ${PROJECT_PARENT_NAME}_${CI_PROJECT_NAME}
+    STATUS_CHECK_DELAY: 60

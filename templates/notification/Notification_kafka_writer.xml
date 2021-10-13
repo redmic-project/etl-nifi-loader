@@ -1,177 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <template encoding-version="1.2">
     <description>Proceso que a partir de un mensaje de alerta en formato json, convierte a avro y lo envía a kafka con compatibilidad con schema registry.</description>
-    <groupId>e625c1ce-0168-1000-43b7-2915b8910df3</groupId>
+    <groupId>e1ebbc15-0168-1000-f3e0-3a8af19c9b04</groupId>
     <name>Notification kafka writer</name>
     <snippet>
         <controllerServices>
-            <id>3009a44e-bd3b-3f97-0000-000000000000</id>
-            <parentGroupId>a31f1405-e779-39af-0000-000000000000</parentGroupId>
-            <bundle>
-                <artifact>nifi-confluent-platform-nar</artifact>
-                <group>org.apache.nifi</group>
-                <version>1.8.0</version>
-            </bundle>
-            <comments></comments>
-            <descriptors>
-                <entry>
-                    <key>url</key>
-                    <value>
-                        <name>url</name>
-                    </value>
-                </entry>
-                <entry>
-                    <key>ssl-context</key>
-                    <value>
-                        <identifiesControllerService>org.apache.nifi.ssl.SSLContextService</identifiesControllerService>
-                        <name>ssl-context</name>
-                    </value>
-                </entry>
-                <entry>
-                    <key>timeout</key>
-                    <value>
-                        <name>timeout</name>
-                    </value>
-                </entry>
-                <entry>
-                    <key>cache-size</key>
-                    <value>
-                        <name>cache-size</name>
-                    </value>
-                </entry>
-                <entry>
-                    <key>cache-expiration</key>
-                    <value>
-                        <name>cache-expiration</name>
-                    </value>
-                </entry>
-            </descriptors>
-            <name>ConfluentSchemaRegistry</name>
-            <persistsState>false</persistsState>
-            <properties>
-                <entry>
-                    <key>url</key>
-                    <value>http://schema-registry:8081</value>
-                </entry>
-                <entry>
-                    <key>ssl-context</key>
-                </entry>
-                <entry>
-                    <key>timeout</key>
-                    <value>30 secs</value>
-                </entry>
-                <entry>
-                    <key>cache-size</key>
-                    <value>1000</value>
-                </entry>
-                <entry>
-                    <key>cache-expiration</key>
-                    <value>1 hour</value>
-                </entry>
-            </properties>
-            <state>ENABLED</state>
-            <type>org.apache.nifi.confluent.schemaregistry.ConfluentSchemaRegistry</type>
-        </controllerServices>
-        <controllerServices>
-            <id>b2493e5f-808a-3968-0000-000000000000</id>
-            <parentGroupId>a31f1405-e779-39af-0000-000000000000</parentGroupId>
-            <bundle>
-                <artifact>nifi-record-serialization-services-nar</artifact>
-                <group>org.apache.nifi</group>
-                <version>1.8.0</version>
-            </bundle>
-            <comments></comments>
-            <descriptors>
-                <entry>
-                    <key>Schema Write Strategy</key>
-                    <value>
-                        <name>Schema Write Strategy</name>
-                    </value>
-                </entry>
-                <entry>
-                    <key>schema-access-strategy</key>
-                    <value>
-                        <name>schema-access-strategy</name>
-                    </value>
-                </entry>
-                <entry>
-                    <key>schema-registry</key>
-                    <value>
-                        <identifiesControllerService>org.apache.nifi.schemaregistry.services.SchemaRegistry</identifiesControllerService>
-                        <name>schema-registry</name>
-                    </value>
-                </entry>
-                <entry>
-                    <key>schema-name</key>
-                    <value>
-                        <name>schema-name</name>
-                    </value>
-                </entry>
-                <entry>
-                    <key>schema-version</key>
-                    <value>
-                        <name>schema-version</name>
-                    </value>
-                </entry>
-                <entry>
-                    <key>schema-branch</key>
-                    <value>
-                        <name>schema-branch</name>
-                    </value>
-                </entry>
-                <entry>
-                    <key>schema-text</key>
-                    <value>
-                        <name>schema-text</name>
-                    </value>
-                </entry>
-                <entry>
-                    <key>compression-format</key>
-                    <value>
-                        <name>compression-format</name>
-                    </value>
-                </entry>
-            </descriptors>
-            <name>WriteAlertAvro</name>
-            <persistsState>false</persistsState>
-            <properties>
-                <entry>
-                    <key>Schema Write Strategy</key>
-                    <value>confluent-encoded</value>
-                </entry>
-                <entry>
-                    <key>schema-access-strategy</key>
-                    <value>schema-name</value>
-                </entry>
-                <entry>
-                    <key>schema-registry</key>
-                    <value>3009a44e-bd3b-3f97-0000-000000000000</value>
-                </entry>
-                <entry>
-                    <key>schema-name</key>
-                    <value>alert-es.redmic.brokerlib.alert.Message</value>
-                </entry>
-                <entry>
-                    <key>schema-version</key>
-                </entry>
-                <entry>
-                    <key>schema-branch</key>
-                </entry>
-                <entry>
-                    <key>schema-text</key>
-                    <value>${avro.schema}</value>
-                </entry>
-                <entry>
-                    <key>compression-format</key>
-                    <value>NONE</value>
-                </entry>
-            </properties>
-            <state>ENABLED</state>
-            <type>org.apache.nifi.avro.AvroRecordSetWriter</type>
-        </controllerServices>
-        <controllerServices>
-            <id>d6c535a5-de81-3134-0000-000000000000</id>
-            <parentGroupId>a31f1405-e779-39af-0000-000000000000</parentGroupId>
+            <id>067f97bf-1052-38e9-0000-000000000000</id>
+            <parentGroupId>9cebb2d2-fdb0-3ed4-0000-000000000000</parentGroupId>
             <bundle>
                 <artifact>nifi-record-serialization-services-nar</artifact>
                 <group>org.apache.nifi</group>
@@ -268,7 +103,7 @@
                 </entry>
                 <entry>
                     <key>schema-registry</key>
-                    <value>3009a44e-bd3b-3f97-0000-000000000000</value>
+                    <value>d737c4d3-ef88-3329-0000-000000000000</value>
                 </entry>
                 <entry>
                     <key>schema-name</key>
@@ -313,9 +148,174 @@
             <state>ENABLED</state>
             <type>org.apache.nifi.json.JsonPathReader</type>
         </controllerServices>
+        <controllerServices>
+            <id>44c4fabe-b8c0-37ee-0000-000000000000</id>
+            <parentGroupId>9cebb2d2-fdb0-3ed4-0000-000000000000</parentGroupId>
+            <bundle>
+                <artifact>nifi-record-serialization-services-nar</artifact>
+                <group>org.apache.nifi</group>
+                <version>1.8.0</version>
+            </bundle>
+            <comments></comments>
+            <descriptors>
+                <entry>
+                    <key>Schema Write Strategy</key>
+                    <value>
+                        <name>Schema Write Strategy</name>
+                    </value>
+                </entry>
+                <entry>
+                    <key>schema-access-strategy</key>
+                    <value>
+                        <name>schema-access-strategy</name>
+                    </value>
+                </entry>
+                <entry>
+                    <key>schema-registry</key>
+                    <value>
+                        <identifiesControllerService>org.apache.nifi.schemaregistry.services.SchemaRegistry</identifiesControllerService>
+                        <name>schema-registry</name>
+                    </value>
+                </entry>
+                <entry>
+                    <key>schema-name</key>
+                    <value>
+                        <name>schema-name</name>
+                    </value>
+                </entry>
+                <entry>
+                    <key>schema-version</key>
+                    <value>
+                        <name>schema-version</name>
+                    </value>
+                </entry>
+                <entry>
+                    <key>schema-branch</key>
+                    <value>
+                        <name>schema-branch</name>
+                    </value>
+                </entry>
+                <entry>
+                    <key>schema-text</key>
+                    <value>
+                        <name>schema-text</name>
+                    </value>
+                </entry>
+                <entry>
+                    <key>compression-format</key>
+                    <value>
+                        <name>compression-format</name>
+                    </value>
+                </entry>
+            </descriptors>
+            <name>WriteAlertAvro</name>
+            <persistsState>false</persistsState>
+            <properties>
+                <entry>
+                    <key>Schema Write Strategy</key>
+                    <value>confluent-encoded</value>
+                </entry>
+                <entry>
+                    <key>schema-access-strategy</key>
+                    <value>schema-name</value>
+                </entry>
+                <entry>
+                    <key>schema-registry</key>
+                    <value>d737c4d3-ef88-3329-0000-000000000000</value>
+                </entry>
+                <entry>
+                    <key>schema-name</key>
+                    <value>alert-es.redmic.brokerlib.alert.Message</value>
+                </entry>
+                <entry>
+                    <key>schema-version</key>
+                </entry>
+                <entry>
+                    <key>schema-branch</key>
+                </entry>
+                <entry>
+                    <key>schema-text</key>
+                    <value>${avro.schema}</value>
+                </entry>
+                <entry>
+                    <key>compression-format</key>
+                    <value>NONE</value>
+                </entry>
+            </properties>
+            <state>ENABLED</state>
+            <type>org.apache.nifi.avro.AvroRecordSetWriter</type>
+        </controllerServices>
+        <controllerServices>
+            <id>d737c4d3-ef88-3329-0000-000000000000</id>
+            <parentGroupId>9cebb2d2-fdb0-3ed4-0000-000000000000</parentGroupId>
+            <bundle>
+                <artifact>nifi-confluent-platform-nar</artifact>
+                <group>org.apache.nifi</group>
+                <version>1.8.0</version>
+            </bundle>
+            <comments></comments>
+            <descriptors>
+                <entry>
+                    <key>url</key>
+                    <value>
+                        <name>url</name>
+                    </value>
+                </entry>
+                <entry>
+                    <key>ssl-context</key>
+                    <value>
+                        <identifiesControllerService>org.apache.nifi.ssl.SSLContextService</identifiesControllerService>
+                        <name>ssl-context</name>
+                    </value>
+                </entry>
+                <entry>
+                    <key>timeout</key>
+                    <value>
+                        <name>timeout</name>
+                    </value>
+                </entry>
+                <entry>
+                    <key>cache-size</key>
+                    <value>
+                        <name>cache-size</name>
+                    </value>
+                </entry>
+                <entry>
+                    <key>cache-expiration</key>
+                    <value>
+                        <name>cache-expiration</name>
+                    </value>
+                </entry>
+            </descriptors>
+            <name>ConfluentSchemaRegistry</name>
+            <persistsState>false</persistsState>
+            <properties>
+                <entry>
+                    <key>url</key>
+                    <value>http://schema-registry:8081</value>
+                </entry>
+                <entry>
+                    <key>ssl-context</key>
+                </entry>
+                <entry>
+                    <key>timeout</key>
+                    <value>30 secs</value>
+                </entry>
+                <entry>
+                    <key>cache-size</key>
+                    <value>1000</value>
+                </entry>
+                <entry>
+                    <key>cache-expiration</key>
+                    <value>1 hour</value>
+                </entry>
+            </properties>
+            <state>ENABLED</state>
+            <type>org.apache.nifi.confluent.schemaregistry.ConfluentSchemaRegistry</type>
+        </controllerServices>
         <processors>
-            <id>db57098e-c370-30a2-0000-000000000000</id>
-            <parentGroupId>a31f1405-e779-39af-0000-000000000000</parentGroupId>
+            <id>55bf705d-41d6-3d1d-0000-000000000000</id>
+            <parentGroupId>9cebb2d2-fdb0-3ed4-0000-000000000000</parentGroupId>
             <position>
                 <x>0.0</x>
                 <y>0.0</y>
@@ -469,11 +469,11 @@
                     </entry>
                     <entry>
                         <key>record-reader</key>
-                        <value>d6c535a5-de81-3134-0000-000000000000</value>
+                        <value>067f97bf-1052-38e9-0000-000000000000</value>
                     </entry>
                     <entry>
                         <key>record-writer</key>
-                        <value>b2493e5f-808a-3968-0000-000000000000</value>
+                        <value>44c4fabe-b8c0-37ee-0000-000000000000</value>
                     </entry>
                     <entry>
                         <key>use-transactions</key>
@@ -559,5 +559,5 @@
             <type>org.apache.nifi.processors.kafka.pubsub.PublishKafkaRecord_2_0</type>
         </processors>
     </snippet>
-    <timestamp>02/15/2019 08:44:20 UTC</timestamp>
+    <timestamp>11/14/2019 13:55:54 UTC</timestamp>
 </template>

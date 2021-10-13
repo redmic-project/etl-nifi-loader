@@ -2,30 +2,32 @@ version: '3.5'
 
 services:
   nifi-loader:
-    image: ${IMAGE_NAME}:${IMAGE_TAG:-latest}
+    image: ${IMAGE_NAME:-registry.gitlab.com/redmic-project/etl/nifi-loader}:${IMAGE_TAG:-latest}
     environment:
-      - NIFI_UID
-      - NIFI_GID
-      - ADDITIONAL_LIBS_URLS
+      NIFI_UID:
+      NIFI_GID:
+      ADDITIONAL_LIBS_URLS:
     networks:
-      - kafka-net
+      kafka-net:
     volumes:
       - nifi-conf-vol:/nifi-conf
     deploy:
       mode: replicated
-      replicas: 1
+      replicas: ${REPLICAS:-1}
       restart_policy:
         condition: none
       resources:
         limits:
-          cpus: '0.1'
-          memory: 32M
+          cpus: '${RESOURCES_LIMITS_CPUS:-0.1}'
+          memory: ${RESOURCES_LIMITS_MEMORY:-32M}
         reservations:
-          memory: 16M
+          cpus: '${RESOURCES_RESERVATIONS_CPUS:-0.001}'
+          memory: ${RESOURCES_RESERVATIONS_MEMORY:-16M}
 
 networks:
   kafka-net:
     name: ${KAFKA_NET_NAME:-kafka-net}
+    driver: ${KAFKA_NET_DRIVER:-overlay}
     external: true
 
 volumes:
